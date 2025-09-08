@@ -14,6 +14,10 @@ export default function NavBar({ planets }: NavBarProps)  {
       const [menuIsOpen, setMenuIsOpen] = useState(false);
       const handleMenu = () => setMenuIsOpen(!menuIsOpen);
 
+      function normalizeName(name: string) {
+      return name.toLowerCase().replace(/\s+/g, '-')
+    }
+
     return (
       <div className="w-full flex flex-col items-center">
       <h1 className="text-white font-skcuber text-5xl mt-8">The Solar System 2.0</h1>
@@ -26,7 +30,7 @@ export default function NavBar({ planets }: NavBarProps)  {
                   <NavLink
                     onClick={handleMenu}
                     className=""
-                    to={`/planets/${planet.name}`}
+                    to={`/body/${normalizeName(planet.name)}`}
                   >
                     {/* {planet.name === "pluto"
                       ? ` ${planet.name}?`

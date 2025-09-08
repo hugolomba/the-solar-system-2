@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
-import { useBodies } from "../api/api"
+import type { SolarSystemData } from "../types/types"
 
-export default function Dock() {
-    const bodies = useBodies()
+export default function Dock( { bodies }: { bodies: SolarSystemData | null }) {
+    
   
     function normalizeName(name: string) {
       return name.toLowerCase().replace(/\s+/g, '-')

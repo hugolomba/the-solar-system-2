@@ -60,6 +60,11 @@ export type DwarfPlanet = BaseBody & {
     rotationDuration: string;
     gravity: string;
     orbitalPeriod: string[];
+    satellites: Satellites;
+    orbitalSpeed?: string;
+    radius?: string;
+    oneWayLightToTheSun?: string;
+    temperature?: string;
   };
 };
 
@@ -71,6 +76,7 @@ export type Asteroid = BaseBody & {
     meanDistanceFromSun?: string;
     gravity?: string;
     dimensions?: string;
+    satellites: Satellites;
   };
 };
 
@@ -80,6 +86,7 @@ export type Galaxy = BaseBody & {
     diameter: string;
     estimatedStars: string;
     distanceFromEarth: string;
+    satellites: Satellites;
   };
 };
 
