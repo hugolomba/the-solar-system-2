@@ -1,17 +1,21 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import NavBar from './components/NavBar'
-import { usePlanets } from './api/api'
+import { useBodies } from './api/api'
+import Footer from './components/Footer'
 
 function App() {
-  const planets = usePlanets()
+  const bodies = useBodies()
+  console.log("bodies", bodies)
+ 
   return (
-    <>
-      {planets && <NavBar planets={planets} />}
+    <div className="h-screen flex flex-col justify-between min-h-screen text-center">
+      {bodies && <NavBar planets={bodies.planets} />}
       <Routes>
       <Route path="/" element={<Home />} />
       </Routes>
-    </>
+      <Footer /> 
+    </div>
   )
 }
 

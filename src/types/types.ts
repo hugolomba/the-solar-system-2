@@ -1,29 +1,14 @@
-export type Planet = {
+export type BaseBody = {
   id: string;
   name: string;
   type: string;
   resume: string;
   introduction: string;
   images: {
-    svg: string;
     png: string;
+    svg?: string;
   };
   searchTags: string[];
-  features: {
-    orbitalPeriod: string[];
-    orbitalSpeed: string;
-    rotationDuration: string;
-    radius: string;
-    Diameter: string;
-    sunDistance: string;
-    oneWayLightToTheSun: string;
-    satellites: {
-      number: number;
-      names: string[];
-    };
-    temperature: string;
-    gravity: string;
-  };
   atmosphere: string[];
   discovery: {
     year: string;
@@ -33,4 +18,75 @@ export type Planet = {
   geography: string;
 };
 
-export type PlanetList = Planet[]
+export type Satellites = {
+  number: number;
+  names: string[];
+};
+
+export type Star = BaseBody & {
+  features: {
+    orbitalPeriod: string[];
+    orbitalSpeed: string;
+    rotationDuration: string;
+    radius: string;
+    Diameter: string;
+    sunDistance: string;
+    oneWayLightToTheSun: string;
+    satellites: Satellites;
+    temperature: string;
+    gravity: string;
+  };
+};
+
+export type Planet = BaseBody & {
+  features: {
+    orbitalPeriod: string[];
+    orbitalSpeed: string;
+    rotationDuration: string;
+    radius: string;
+    Diameter: string;
+    sunDistance: string;
+    oneWayLightToTheSun: string;
+    satellites: Satellites;
+    temperature: string;
+    gravity: string;
+  };
+};
+
+export type DwarfPlanet = BaseBody & {
+  features: {
+    Diameter: string;
+    sunDistance: string;
+    rotationDuration: string;
+    gravity: string;
+    orbitalPeriod: string[];
+  };
+};
+
+export type Asteroid = BaseBody & {
+  features: {
+    diameter?: string;
+    orbitalPeriod?: string;
+    rotationDuration?: string;
+    meanDistanceFromSun?: string;
+    gravity?: string;
+    dimensions?: string;
+  };
+};
+
+export type Galaxy = BaseBody & {
+  features: {
+    type: string;
+    diameter: string;
+    estimatedStars: string;
+    distanceFromEarth: string;
+  };
+};
+
+export type SolarSystemData = {
+  stars: Star[];
+  planets: Planet[];
+  dwarfPlanets: DwarfPlanet[];
+  asteroids: Asteroid[];
+  galaxies: Galaxy[];
+};

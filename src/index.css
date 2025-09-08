@@ -30,12 +30,29 @@
 }
 
 #root {
-    margin: auto;
+    /* margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 }
 
 body {
     background-image: url("./assets/img/background-mod.png");
 }
+
+.reflect-img {
+  -webkit-box-reflect: below 2px -webkit-gradient(
+    linear, left top, left bottom,
+    from(transparent),
+    color-stop(0.7, transparent),
+    to(rgba(255, 255, 255, 0.5))
+  );
+  -webkit-transition: all 0.3s;
+  -webkit-transform-origin: 50% 100%;
+}
+
+.reflect-img:hover {
+  -webkit-transform: scale(1.4);
+  margin: 0 1.5em;
+}
+
