@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
 
 @font-face {
   font-family: "SK_Cuber";
@@ -12,11 +13,13 @@
     --font-skcuber: "SK_Cuber", cursive;
     --font-leaguespart: "League Spartan", sans-serif;
     --font-opensans: "Open Sans", sans-serif;
+    --font-audiowide: "Audiowide", cursive;
+    --font-oxanium: "Oxanium", sans-serif;
 }
 
 
 @theme {
-  /* Planet colors */
+  /* text colors */
   --color-sun: rgb(255, 120, 0);
   --color-mercury: #2f6ba0;
   --color-venus: rgb(221, 165, 22);
@@ -35,6 +38,7 @@
 --color-eros: rgb(130, 130, 130);
 --color-milkyway: rgb(200, 180, 255);
 --color-andromeda: rgb(180, 150, 255);
+
 }
 
 

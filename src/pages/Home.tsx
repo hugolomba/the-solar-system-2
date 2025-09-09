@@ -30,7 +30,7 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
         </span>
       </div>
 
-          {/* Cartão principal */}
+          {/* main card */}
       <div className="relative p-4 flex justify-center items-center w-full h-full bg-gradient-to-t from-blue-400/10 to-transparent border border-blue-400 rounded-md animate-[entrance_0.4s_0.8s_backwards]">
         <div className="animate-[entrance_0.2s_0.2s_backwards]" key={bodyType}>
           <Dock bodies={bodies} bodyType={bodyType}/>
@@ -38,13 +38,13 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
 
       </div>
 
-      {/* Opções */}
+      {/* options */}
       <div className="absolute top-0 right-[-220px] w-[200px] flex flex-col animate-[entrance_0.4s_1.4s_backwards]">
         {options.map((opt, i) => (
           <button
             key={i}
             onClick={() => handleClick(i)}
-            className={`h-10 px-2 mr-2 mb-4 border-2 border-black outline outline-1 outline-blue-400 bg-transparent text-white text-sm font-oxanium tracking-wide cursor-pointer transition-all duration-300
+            className={`h-10 px-2 mr-2 mb-4 border-2 border-black outline-1 outline-blue-400 bg-transparent text-white text-sm font-oxanium tracking-wide cursor-pointer transition-all duration-300
               ${
                 activeOption === i
                   ? "bg-blue-400 text-black border-blue-400"

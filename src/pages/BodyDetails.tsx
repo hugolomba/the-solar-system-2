@@ -1,92 +1,79 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import type { Star, Asteroid, DwarfPlanet, Galaxy, Planet, SolarSystemData } from "../types/types";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { Link } from "react-router-dom";
 import PlanetAdditionalInfo from "../components/PlanetAdditionalInfo";
+import { useApp } from "@/context/BodiesContext";
+import { useEffect } from "react";
+import NavBar from "../components/Navbar";
 
-export default function BodyDetails( { bodies }: { bodies: SolarSystemData | null }) {
-    const { bodyName } = useParams<{ bodyName: string }>();
-    function normalizeName(name: string) {
-      return name.toLowerCase().replace(/\s+/g, '-')
-    }
+export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
+  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody } = useApp();
+  const { bodyName } = useParams<{ bodyName: string }>();
 
-  if (!bodies) {
-    return 
+  function normalizeName(name: string) {
+    return name.toLowerCase().replace(/\s+/g, '-');
   }
 
-    //colors map for tailwind
-const colorsMap: Record<string, string> = {
-  Sun: "text-sun",
-  Mercury: "text-mercury",
-  Venus: "text-venus",
-  Earth: "text-earth",
-  Mars: "text-mars",
-  Jupiter: "text-jupiter",
-  Saturn: "text-saturn",
-  Uranus: "text-uranus",
-  Neptune: "text-neptune",
-  Pluto: "text-pluto",
-  Haumea: "text-haumea",
-  Makemake: "text-makemake",
-  Eris: "text-eris",
-  Ceres: "text-ceres",
-  Vesta: "text-vesta",
-  Eros: "text-eros",
-  Milkyway: "text-milkyway",
-  Andromeda: "text-andromeda",
-};
+  // Atualiza o actualBody sempre que bodyName ou allBodies mudarem
+  useEffect(() => {
+    if (bodyName && allBodies) {
+      const body = allBodies.find(b => normalizeName(b.name) === normalizeName(bodyName));
+      setActualBody(body ?? null);
+    }
+  }, [bodyName, allBodies, setActualBody]);
 
-    const allBodies = [
-  ...(bodies?.planets || []),
-  ...(bodies?.stars || []),
-  ...(bodies?.dwarfPlanets || []),
-  ...(bodies?.asteroids || []),
-  ...(bodies?.galaxies || []),
-];
 
-    const body: Star | Planet | DwarfPlanet | Asteroid | Galaxy | undefined = allBodies.find((body) => bodyName && normalizeName(body.name) === normalizeName(bodyName));
-    
-  if (!body) {
-  return <p>Body not found</p>; 
-}
-    
-    const textColor = colorsMap[body.name];
 
-    console.log("BodyDetails body:", body.type);
+  const textColor = colorsMapText[actualBody?.name];
+  const borderColor = colorsMapBorder[actualBody?.name];
+  const hoverTextColor = colorsMapTextHover[actualBody?.name];
 
-    return (
-      
-      <div className="flex flex-row justify-between items-center">
-         <div className="seta-left">
-                <Link className={`body${""}`} to={`/body/${""}`}>
-                  <MdNavigateBefore className={`${textColor} text-6xl`} />
-                </Link>
+  // Encontrar índices para navegação
+  const currentIndex = allBodies.findIndex(b => b.name === actualBody?.name);
+  const prevBody = allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1];
+  const nextBody = allBodies[currentIndex + 1] ?? allBodies[0];
+
+  if (!actualBody) {
+    return <div className="text-white text-center mt-10">Body not found</div>;
+  }
+  return (
+    <>
+    {bodies && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+
+    <div className="flex flex-row justify-between items-center">
+      <div className="seta-left">
+        <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name)}`}>
+          <MdNavigateBefore className={`text-${textColor} text-6xl`} />
+        </Link>
+      </div>
+
+      <div className="details-container flex flex-row items-center gap-6 w-full">
+        <img src={actualBody.images.png} alt={actualBody?.name} className="w-1/3"/>
+        <div className="info-container flex flex-col gap-4 p-4">
+          <div className="title flex flex-row justify-between w-full">
+            <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
+            <h3 className="text-white">
+              <span className={`${textColor} font-opensans font-bold`}>
+                SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}: 
+              </span> {actualBody?.features.satellites.number}
+            </h3>
           </div>
-        <div className="details-container flex flex-row items-center gap-6 w-full">
-            <img src={body.images.png} alt={body?.name} className="w-1/3"/>
-          
-            <div className="info-container flex flex-col gap-4 p-4">
-              <div className="title  flex flex-row justify-between w-full">
-                <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{body.name}</h2>
-                <h3 className="text-white"> <span className={`${textColor} font-opensans font-bold`}>SATELLITE{body.features.satellites.number > 1  ? "S" : ""}: </span> {body?.features.satellites.number}</h3>
-              </div>
 
-              
-              <p className="text-white text-justify">{body?.resume}</p>
+          <p className="text-white text-justify">{actualBody?.resume}</p>
 
-              <div className="additional-info-container">
-                    {body.type === "Planet" && <PlanetAdditionalInfo body={body as Planet} textColor={textColor} />}
-              </div>
-            </div>
+          <div className="additional-info-container">
+            {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
+          </div>
         </div>
+      </div>
 
-        <div className="seta-right">
-                <Link className={`planet${""}`} to={`/planeta/${""}`}>
-                    <MdNavigateNext className={`${textColor} text-6xl`} />
-                </Link>
-          </div>
+      <div className="seta-right">
+        <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name)}`}>
+          <MdNavigateNext className={`text-${textColor} text-6xl`} />
+        </Link>
+      </div>
 
-            <style>
+      <style>
         {`
           @keyframes entrance {
             0%, 10%, 30%, 50%, 70%, 90% { opacity: 0; }
@@ -94,7 +81,7 @@ const colorsMap: Record<string, string> = {
           }
         `}
       </style>
-      </div>
-    )
-
+    </div>
+    </>
+  );
 }

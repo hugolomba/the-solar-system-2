@@ -6,27 +6,28 @@ import Footer from './components/Footer'
 import BodyDetails from './pages/BodyDetails'
 import Test from './components/Test'
 import Marquee from './components/Marquee'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { AppProvider, useApp } from './context/BodiesContext'
 
 
 function App() {
-  const bodies = useBodies()
+  // const bodies = useBodies()
+  const { bodies } = useApp();
   const [bodyType, setBodyType] = useState<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies">("Planets");
   const [activeOption, setActiveOption] = useState<number | null>(null);
   const options = ["Stars", "Planets", "Dwarf Planets", "Asteroids", "Galaxies"];
  
   return (
     
-
     
-    <div className="h-screen flex flex-col justify-between min-h-screen text-center">
+      <div className="h-screen flex flex-col justify-between min-h-screen text-center">
       
       <Marquee />
-      {bodies && bodyType === "Stars" && <NavBar planets={bodies.stars} />}
-      {bodies && bodyType === "Planets" && <NavBar planets={bodies.planets} />}
-      {bodies && bodyType === "Dwarf Planets" && <NavBar planets={bodies.dwarfPlanets} />}
-      {bodies && bodyType === "Asteroids" && <NavBar planets={bodies.asteroids} />}
-      {bodies && bodyType === "Galaxies" && <NavBar planets={bodies.galaxies} />}
+      {/* {bodies && bodyType === "Stars" && <NavBar bodies={bodies.stars} />}
+      {bodies && bodyType === "Planets" && <NavBar bodies={bodies.planets} />}
+      {bodies && bodyType === "Dwarf Planets" && <NavBar bodies={bodies.dwarfPlanets} />}
+      {bodies && bodyType === "Asteroids" && <NavBar bodies={bodies.asteroids} />}
+      {bodies && bodyType === "Galaxies" && <NavBar bodies={bodies.galaxies} />} */}
       <Routes>
       <Route path="/" element={<Home  bodies={bodies} bodyType={bodyType} setBodyType={setBodyType} activeOption={activeOption} setActiveOption={setActiveOption} options={options} />} />
       <Route path="/body/:bodyName" element={<BodyDetails bodies={bodies} />} />
@@ -34,6 +35,7 @@ function App() {
       </Routes>
       <Footer /> 
     </div>
+
   )
 }
 
