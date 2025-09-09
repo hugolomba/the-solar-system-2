@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import type { Star, Asteroid, DwarfPlanet, Galaxy, Planet, SolarSystemData } from "../types/types";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Link } from "react-router-dom";
+import PlanetAdditionalInfo from "../components/PlanetAdditionalInfo";
 
 export default function BodyDetails( { bodies }: { bodies: SolarSystemData | null }) {
     const { bodyName } = useParams<{ bodyName: string }>();
@@ -44,7 +45,14 @@ const colorsMap: Record<string, string> = {
 ];
 
     const body: Star | Planet | DwarfPlanet | Asteroid | Galaxy | undefined = allBodies.find((body) => bodyName && normalizeName(body.name) === normalizeName(bodyName));
+    
+  if (!body) {
+  return <p>Body not found</p>; 
+}
+    
     const textColor = colorsMap[body.name];
+
+    console.log("BodyDetails body:", body.type);
 
     return (
       <div className="flex flex-row justify-between items-center">
@@ -53,12 +61,17 @@ const colorsMap: Record<string, string> = {
                   <MdNavigateBefore className={`${textColor} text-6xl`} />
                 </Link>
           </div>
-        <div className="flex flex-row w-5xl m-auto mt-6 ">
-            <img src={body?.images.png} alt={body?.name} className="w-1/3"/>
-            <div className="info-container">
-              <div className="title">
-                <h2 className="">{body?.name}</h2>
-                <span className="">{body?.features.satellites.number}</span>
+        <div className="details-container flex flex-row items-center gap-6 w-full">
+            <img src={body.images.png} alt={body?.name} className="w-1/3"/>
+            <div className="info-container flex flex-col gap-4 p-4">
+              <div className="title  flex flex-row justify-between w-full">
+                <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{body.name}</h2>
+                <h3 className="text-white"> <span className={`${textColor} font-opensans font-bold`}>SATELLITE{body.features.satellites.number > 1  ? "S" : ""}: </span> {body?.features.satellites.number}</h3>
+              </div>
+              <p className="text-white text-justify">{body?.resume}</p>
+
+              <div className="additional-info-container">
+                    {body.type === "Planet" && <PlanetAdditionalInfo body={body as Planet} textColor={textColor} />}
               </div>
             </div>
         </div>
