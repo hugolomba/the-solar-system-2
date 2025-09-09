@@ -55,6 +55,7 @@ const colorsMap: Record<string, string> = {
     console.log("BodyDetails body:", body.type);
 
     return (
+      
       <div className="flex flex-row justify-between items-center">
          <div className="seta-left">
                 <Link className={`body${""}`} to={`/body/${""}`}>
@@ -63,11 +64,14 @@ const colorsMap: Record<string, string> = {
           </div>
         <div className="details-container flex flex-row items-center gap-6 w-full">
             <img src={body.images.png} alt={body?.name} className="w-1/3"/>
+          
             <div className="info-container flex flex-col gap-4 p-4">
               <div className="title  flex flex-row justify-between w-full">
                 <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{body.name}</h2>
                 <h3 className="text-white"> <span className={`${textColor} font-opensans font-bold`}>SATELLITE{body.features.satellites.number > 1  ? "S" : ""}: </span> {body?.features.satellites.number}</h3>
               </div>
+
+              
               <p className="text-white text-justify">{body?.resume}</p>
 
               <div className="additional-info-container">
@@ -81,6 +85,15 @@ const colorsMap: Record<string, string> = {
                     <MdNavigateNext className={`${textColor} text-6xl`} />
                 </Link>
           </div>
+
+            <style>
+        {`
+          @keyframes entrance {
+            0%, 10%, 30%, 50%, 70%, 90% { opacity: 0; }
+            20%, 40%, 60%, 80%, 100% { opacity: 1; }
+          }
+        `}
+      </style>
       </div>
     )
 

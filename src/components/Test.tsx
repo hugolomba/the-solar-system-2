@@ -1,41 +1,56 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
 
-export default function FuturisticHUD() {
+export default function SciFiCard() {
+  const [activeOption, setActiveOption] = useState<number | null>(null);
+  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center">
-      <svg width="400" height="400" viewBox="0 0 400 400">
-        {/* Círculos concêntricos */}
-        {[80, 120, 160].map((r, i) => (
-          <circle
+    <div className="relative w-[400px] mx-auto grid h-[300px]">
+      {/* Linha lateral com título */}
+      <div className="absolute top-0 left-[-50px] h-full w-[5px] bg-yellow-400 animate-[entrance_0.4s_1.2s_backwards]">
+        <span className="absolute left-[-150px] top-[-17px] block transform -rotate-90 origin-[100%_100%] text-white/30 uppercase font-medium">
+          D7460N sci-fi ui #X
+        </span>
+      </div>
+
+      {/* Cartão principal */}
+      <div className="relative w-full h-full bg-gradient-to-t from-yellow-400/10 to-transparent border border-yellow-400 rounded-md animate-[entrance_0.4s_0.8s_backwards]">
+        <div className="m-4" id="component">
+          {/* Conteúdo interno */} 
+        </div>
+      </div>
+
+      {/* Descrição animada */}
+      <div className="absolute top-full mt-2 animate-[entrance_0.4s_1s_backwards] text-white/80">
+        <p>Descrição ou texto adicional aqui.</p>
+      </div>
+
+      {/* Opções */}
+      <div className="absolute top-0 right-[-220px] w-[200px] flex flex-wrap animate-[entrance_0.4s_1.4s_backwards]">
+        {options.map((opt, i) => (
+          <button
             key={i}
-            cx="200"
-            cy="200"
-            r={r}
-            stroke="cyan"
-            strokeWidth="2"
-            fill="none"
-            className="opacity-70"
-          />
+            onClick={() => setActiveOption(i)}
+            className={`h-10 px-2 mr-2 mb-4 border-2 border-black outline outline-1 outline-yellow-400 bg-transparent text-white text-sm font-oxanium tracking-wide cursor-pointer transition-all duration-300
+              ${
+                activeOption === i
+                  ? "bg-yellow-400 text-black border-yellow-400"
+                  : "hover:bg-yellow-400/50 focus:bg-yellow-400/50"
+              }`}
+          >
+            {opt}
+          </button>
         ))}
+      </div>
 
-        {/* Radar rotativo */}
-        <motion.line
-          x1="200"
-          y1="200"
-          x2="200"
-          y2="40"
-          stroke="cyan"
-          strokeWidth="2"
-          initial={{ rotate: 0 }}
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
-          style={{ originX: "200px", originY: "200px" }}
-        />
-
-        {/* Pontos simulando objetos detectados */}
-        <circle cx="280" cy="200" r="5" fill="cyan" />
-        <circle cx="150" cy="100" r="5" fill="cyan" />
-      </svg>
+      <style>
+        {`
+          @keyframes entrance {
+            0%, 10%, 30%, 50%, 70%, 90% { opacity: 0; }
+            20%, 40%, 60%, 80%, 100% { opacity: 1; }
+          }
+        `}
+      </style>
     </div>
   );
 }
