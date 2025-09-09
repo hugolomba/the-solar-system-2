@@ -21,10 +21,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
     }
   
 
-    // const textColor = colorsMap[actualBody.name]
-    //  const textColor = colorsMapText[actualBody?.name];
-
-    console.log("textColor:", textColor);
+    // const activeBody = 
 
     return (
       <div className="w-full flex flex-col items-center">
@@ -37,7 +34,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
                 <li key={body.id}>
                   <NavLink
                     onClick={handleMenu}
-                    className={`font-oxanium ${hoverTextColor} hover:border-b-5 ${borderColor} transition-colors duration-300`}
+                    className={`font-oxanium ${hoverTextColor} hover:border-b-5 ${borderColor} transition-colors duration-300 ${body.name === actualBody?.name ? `border-b-4 ${borderColor} ${textColor}` : "border-b-0"}`}
                     to={`/body/${normalizeName(body.name)}`}
                   >
                     {body.name.toLocaleUpperCase()}

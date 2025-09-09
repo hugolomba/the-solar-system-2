@@ -36,14 +36,18 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   if (!actualBody) {
     return <div className="text-white text-center mt-10">Body not found</div>;
   }
+  console.log("actualBody:", actualBody);
   return (
     <>
-    {bodies && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-
+    {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+    {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+    {bodies && (actualBody.type === "Dwarf Planet") && <NavBar bodies={bodies.dwarfPlanets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+    {bodies && (actualBody.type === "Asteroid" || actualBody.type === "Asteroid/Dwarf Planet") && <NavBar bodies={bodies.asteroids} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+    {bodies && actualBody.type === "Galaxy" && <NavBar bodies={bodies.galaxies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
     <div className="flex flex-row justify-between items-center">
       <div className="seta-left">
         <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name)}`}>
-          <MdNavigateBefore className={`text-${textColor} text-6xl`} />
+          <MdNavigateBefore className={`${textColor} text-6xl`} />
         </Link>
       </div>
 
@@ -69,7 +73,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
       <div className="seta-right">
         <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name)}`}>
-          <MdNavigateNext className={`text-${textColor} text-6xl`} />
+          <MdNavigateNext className={`${textColor} text-6xl`} />
         </Link>
       </div>
 
