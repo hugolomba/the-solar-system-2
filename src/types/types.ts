@@ -2,20 +2,26 @@ export type BaseBody = {
   id: string;
   name: string;
   type: string;
+  subtype?: string;
   resume: string;
-  introduction: string;
+  introduction?: string;
   images: {
     png: string;
     svg?: string;
   };
+  features: Features;
   searchTags: string[];
-  atmosphere: string[];
-  discovery: {
+  atmosphere?: string[];
+  discovery?: {
     year: string;
     by: string;
   };
-  curiosities: string[];
-  geography: string;
+  curiosities?: string[];
+  geography?: string;
+};
+
+export type Features = {
+  [key: string]: any; 
 };
 
 export type Satellites = {
@@ -97,3 +103,17 @@ export type SolarSystemData = {
   asteroids: Asteroid[];
   galaxies: Galaxy[];
 };
+
+export type AppContextType = {
+  bodies: SolarSystemData | null;
+  setBodies: React.Dispatch<React.SetStateAction<SolarSystemData | null>>;
+  isLoading: boolean;
+  allBodies: BaseBody[];
+  actualBody: BaseBody | null;
+  setActualBody: React.Dispatch<React.SetStateAction<BaseBody | null>>;
+  colorsMapText: Record<string, string>;
+  colorsMapBackground: Record<string, string>;
+  colorsMapBorder: Record<string, string>;
+  colorsMapTextHover: Record<string, string>;
+}
+

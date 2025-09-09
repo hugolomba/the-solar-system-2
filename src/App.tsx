@@ -19,10 +19,10 @@ function App() {
  
   return (
     
-    
-      <div className="h-screen flex flex-col justify-between min-h-screen text-center">
       
+      <div className="h-screen mt-4 flex flex-col justify-between items-center min-h-screen text-center">
       <Marquee />
+      
       {/* {bodies && bodyType === "Stars" && <NavBar bodies={bodies.stars} />}
       {bodies && bodyType === "Planets" && <NavBar bodies={bodies.planets} />}
       {bodies && bodyType === "Dwarf Planets" && <NavBar bodies={bodies.dwarfPlanets} />}
@@ -35,6 +35,7 @@ function App() {
       </Routes>
       <Footer /> 
     </div>
+  
 
   )
 }

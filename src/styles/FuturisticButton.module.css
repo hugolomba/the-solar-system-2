@@ -1,0 +1,78 @@
+
+
+.cardFrameContainer {
+  margin: 5px;
+  margin-left: 10%;
+  margin-right: 10%;
+  position: relative;
+  /* background-color: aqua; */
+  /* margin-top: 6rem; */
+}
+
+.cardFrame {
+  background-color: black;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 0;
+  --border-sub: 1px;
+  --sub: calc(1rem + var(--border-sub));
+  clip-path: polygon(
+    var(--border-sub) var(--border-sub),
+    calc(100% - var(--border-sub)) var(--border-sub),
+    calc(100% - var(--border-sub)) calc(100% - var(--sub)),
+    calc(100% - var(--sub)) calc(100% - var(--border-sub)),
+    var(--border-sub) calc(100% - var(--border-sub))
+  );
+  position: relative;
+  transition: margin 0.3s ease;
+}
+
+.cardSmallTriangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: rgb(156, 156, 156);
+  clip-path: polygon(0 0, 100% 0, 0% 100%);
+}
+
+.cardFrameBorder {
+  position: absolute;
+  background-color: rgb(107, 107, 107);
+  height: 100%;
+  width: 100%;
+  --sub: 1rem;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--sub)),
+    calc(100% - var(--sub)) 100%,
+    0 100%
+  );
+}
+
+.cardFrameContainer:hover {
+  /* .card-frame{
+        background-color: rgb(29, 29, 29);
+    } */
+  .cardFrameBorder {
+    background-color: white;
+  }
+  .cardSmallTriangle {
+    background-color: white;
+  }
+}
+
+.cardActive {
+  .cardFrame {
+    margin: 2px;
+    margin-left: 10px;
+  }
+  .cardFrameBorder {
+    background-color: white;
+  }
+  .cardSmallTriangle {
+    background-color: white;
+  }
+}

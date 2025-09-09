@@ -1,6 +1,6 @@
 export default function Marquee() {
   return (
-    <div className="relative overflow-hidden bg-[#232776] shadow-[2px_2px_10px_#232776] px-2 py-1">
+    <div className="absolute top-0 w-full overflow-hidden bg-[#232776] shadow-[2px_2px_10px_#232776] px-2 py-1">
       {/* Glow line overlay */}
       <div
         className="absolute inset-0 z-10"

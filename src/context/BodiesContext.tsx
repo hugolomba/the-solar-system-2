@@ -1,18 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import type { SolarSystemData } from "../types/types";
+import type { SolarSystemData, BaseBody, AppContextType } from "../types/types";
 import axios from "axios";
 
 // 1. Create the context
-const AppContext = createContext<{
-  bodies: SolarSystemData | null;
-  setBodies: React.Dispatch<React.SetStateAction<SolarSystemData | null>>;
-  isLoading: boolean;
-} | null>(null);
+const AppContext = createContext<AppContextType | null>(null);
 
 // 2. Provider component
 export function AppProvider({ children } : { children: React.ReactNode }) {
   const [bodies, setBodies] = useState<SolarSystemData | null>(null);
-  const [actualBody, setActualBody] = useState<string | null>(null);
+  const [actualBody, setActualBody] = useState<BaseBody | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   
@@ -32,27 +28,6 @@ export function AppProvider({ children } : { children: React.ReactNode }) {
     fetchBodies();
   }, []);
 
-      //colors map for tailwind
-// const colorsMap: Record<string, string> = {
-//   Sun: "sun",
-//   Mercury: "mercury",
-//   Venus: "venus",
-//   Earth: "earth",
-//   Mars: "mars",
-//   Jupiter: "jupiter",
-//   Saturn: "saturn",
-//   Uranus: "uranus",
-//   Neptune: "neptune",
-//   Pluto: "pluto",
-//   Haumea: "haumea",
-//   Makemake: "makemake",
-//   Eris: "eris",
-//   Ceres: "ceres",
-//   Vesta: "vesta",
-//   Eros: "eros",
-//   Milkyway: "milkyway",
-//   Andromeda: "andromeda",
-// };
 
 const colorsMapText: Record<string, string> = {
   Sun: "text-[#ff7800]",
@@ -138,7 +113,7 @@ const colorsMapTextHover: Record<string, string> = {
   Andromeda: "hover:text-[#b496ff]",
 };
 
-    const allBodies = [
+    const allBodies: BaseBody[] = [
     ...(bodies?.planets || []),
     ...(bodies?.stars || []),
     ...(bodies?.dwarfPlanets || []),

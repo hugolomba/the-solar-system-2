@@ -1,14 +1,14 @@
 import { useParams, Link } from "react-router-dom";
-import type { Star, Asteroid, DwarfPlanet, Galaxy, Planet, SolarSystemData } from "../types/types";
+import type { Planet, SolarSystemData, BaseBody } from "../types/types"; 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import PlanetAdditionalInfo from "../components/PlanetAdditionalInfo";
 import { useApp } from "@/context/BodiesContext";
 import { useEffect } from "react";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavBar"
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
   const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody } = useApp();
-  const { bodyName } = useParams<{ bodyName: string }>();
+  const { bodyName } = useParams<{ bodyName?: string }>(); // bodyName pode ser undefined
 
   function normalizeName(name: string) {
     return name.toLowerCase().replace(/\s+/g, '-');
@@ -17,75 +17,81 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   // Atualiza o actualBody sempre que bodyName ou allBodies mudarem
   useEffect(() => {
     if (bodyName && allBodies) {
-      const body = allBodies.find(b => normalizeName(b.name) === normalizeName(bodyName));
+      const body: BaseBody | undefined = allBodies.find(b => normalizeName(b.name) === normalizeName(bodyName));
       setActualBody(body ?? null);
     }
   }, [bodyName, allBodies, setActualBody]);
 
+  const textColor = actualBody ? colorsMapText[actualBody.name] : "";
+  const borderColor = actualBody ? colorsMapBorder[actualBody.name] : "";
+  const hoverTextColor = actualBody ? colorsMapTextHover[actualBody.name] : "";
 
-
-  const textColor = colorsMapText[actualBody?.name];
-  const borderColor = colorsMapBorder[actualBody?.name];
-  const hoverTextColor = colorsMapTextHover[actualBody?.name];
-
-  // Encontrar índices para navegação
-  const currentIndex = allBodies.findIndex(b => b.name === actualBody?.name);
-  const prevBody = allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1];
-  const nextBody = allBodies[currentIndex + 1] ?? allBodies[0];
+  const currentIndex = allBodies?.findIndex(b => b.name === actualBody?.name) ?? -1;
+  const prevBody = currentIndex > -1 && allBodies ? allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1] : undefined;
+  const nextBody = currentIndex > -1 && allBodies ? allBodies[currentIndex + 1] ?? allBodies[0] : undefined;
 
   if (!actualBody) {
     return <div className="text-white text-center mt-10">Body not found</div>;
   }
-  console.log("actualBody:", actualBody);
+
   return (
     <>
-    {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-    {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-    {bodies && (actualBody.type === "Dwarf Planet") && <NavBar bodies={bodies.dwarfPlanets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-    {bodies && (actualBody.type === "Asteroid" || actualBody.type === "Asteroid/Dwarf Planet") && <NavBar bodies={bodies.asteroids} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-    {bodies && actualBody.type === "Galaxy" && <NavBar bodies={bodies.galaxies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-    <div className="flex flex-row justify-between items-center">
-      <div className="seta-left">
-        <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name)}`}>
-          <MdNavigateBefore className={`${textColor} text-6xl`} />
-        </Link>
-      </div>
+      {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+      {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+      {bodies && actualBody.type === "Dwarf Planet" && <NavBar bodies={bodies.dwarfPlanets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+      {bodies && (actualBody.type === "Asteroid" || actualBody.type === "Asteroid/Dwarf Planet") && <NavBar bodies={bodies.asteroids} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+      {bodies && actualBody.type === "Galaxy" && <NavBar bodies={bodies.galaxies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+      
+      <div className="flex flex-row justify-between items-center ">
+        <div className="seta-left">
+          <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
+            <MdNavigateBefore className={`${textColor} text-6xl`} />
+          </Link>
+        </div>
 
-      <div className="details-container flex flex-row items-center gap-6 w-full">
-        <img src={actualBody.images.png} alt={actualBody?.name} className="w-1/3"/>
-        <div className="info-container flex flex-col gap-4 p-4">
-          <div className="title flex flex-row justify-between w-full">
-            <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
-            <h3 className="text-white">
-              <span className={`${textColor} font-opensans font-bold`}>
-                SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}: 
-              </span> {actualBody?.features.satellites.number}
-            </h3>
-          </div>
+        <div className="details-container flex flex-row items-center gap-6 w-full">
+          <img src={actualBody.images.png} alt={actualBody?.name} className="w-1/3 motion-safe:animate-[spin_400s_linear_infinite]" />
+          <div className="info-container flex flex-col gap-4 p-4">
+            <div className="title flex flex-row justify-between w-full">
+              <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
+              <h3 className="text-white">
+                <span className={`${textColor} font-opensans font-bold`}>
+                  SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}:
+                </span> {actualBody?.features.satellites.number}
+              </h3>
+            </div>
 
-          <p className="text-white text-justify">{actualBody?.resume}</p>
+            <p className="text-white text-justify">{actualBody?.resume}</p>
 
-          <div className="additional-info-container">
-            {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
+            <div className="additional-info-container">
+              {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="seta-right">
-        <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name)}`}>
-          <MdNavigateNext className={`${textColor} text-6xl`} />
-        </Link>
-      </div>
+        <div className="seta-right">
+          <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name ?? "")}`}>
+            <MdNavigateNext className={`${textColor} text-6xl`} />
+          </Link>
+        </div>
 
-      <style>
-        {`
-          @keyframes entrance {
-            0%, 10%, 30%, 50%, 70%, 90% { opacity: 0; }
-            20%, 40%, 60%, 80%, 100% { opacity: 1; }
-          }
-        `}
-      </style>
-    </div>
+        <style>
+          {`
+            @keyframes entrance {
+              0%, 10%, 30%, 50%, 70%, 90% { opacity: 0; }
+              20%, 40%, 60%, 80%, 100% { opacity: 1; }
+            }
+            @keyframes spin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+
+            .spinning-image {
+              animation: spin 60s linear infinite;
+            }
+          `}
+        </style>
+      </div>
     </>
   );
 }

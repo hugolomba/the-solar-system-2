@@ -9,6 +9,10 @@ import { b } from "framer-motion/client";
 
 type NavBarProps = {
   bodies: Planet[] | DwarfPlanet[] | Star[] | Asteroid[] | Galaxy[]
+  textColor: string;
+  borderColor: string;
+  hoverTextColor: string;
+
 }
 
 export default function NavBar({ bodies, textColor, borderColor, hoverTextColor }: NavBarProps)  {
@@ -25,7 +29,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
 
     return (
       <div className="w-full flex flex-col items-center">
-      <h1 className="text-white font-skcuber text-5xl mt-8 ">The Solar System 2.0</h1>
+      <h1 className="text-white font-skcuber text-5xl mt-8 "><Link to="/">The Solar System 2.0</Link></h1>
       <nav className="text-white flex flex-col justify-between  ">
         <ul className="flex flex-row gap-4 list-none items-center font-leaguespart text-lg mt-4">
           {bodies.length > 0 &&
