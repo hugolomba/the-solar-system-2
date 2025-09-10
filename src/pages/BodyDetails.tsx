@@ -5,6 +5,7 @@ import PlanetAdditionalInfo from "../components/PlanetAdditionalInfo";
 import { useApp } from "@/context/BodiesContext";
 import { useEffect } from "react";
 import NavBar from "../components/NavBar"
+import Buttons from "@/components/Buttons";
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
   const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
@@ -50,11 +51,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
   return (
     <>
-      {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-      {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-      {bodies && actualBody.type === "Dwarf Planet" && <NavBar bodies={bodies.dwarfPlanets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-      {bodies && (actualBody.type === "Asteroid" || actualBody.type === "Asteroid/Dwarf Planet") && <NavBar bodies={bodies.asteroids} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
-      {bodies && actualBody.type === "Galaxy" && <NavBar bodies={bodies.galaxies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+
       
       <div className="flex flex-row justify-between items-center w-full h-full ">
         <div className="seta-left">
@@ -64,28 +61,18 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
         </div>
 
         <div className="details-container flex flex-col items-center gap-2 w-full h-full ">
-          {/* <img src={actualBody.images.png} alt={actualBody?.name} className="w-1/3 motion-safe:animate-[spin_400s_linear_infinite]" />
-          <div className="info-container flex flex-col gap-4 p-4">
-            <div className="title flex flex-row justify-between w-full">
-              <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
-              <h3 className="text-white">
-                <span className={`${textColor} font-opensans font-bold`}>
-                  SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}:
-                </span> {actualBody?.features.satellites.number}
-              </h3>
-            </div>
 
-            <p className="text-white text-justify">{actualBody?.resume}</p>
-
-            <div className="additional-info-container">
-              {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
-            </div>
-          </div> */}
 
           {/* first line */}
           <div className={`title flex flex-row items-center justify-between w-full px-4 py-2 ${border}`}>
-            <h2 className={`text-white font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
-            <h3 className={`${textColor} font-opensans font-bold`}>SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}: <span className="text-white">{actualBody?.features.satellites.number}</span></h3>
+            {/* <h2 className={`text-white font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
+            <h3 className={`${textColor} font-opensans font-bold`}>SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}: <span className="text-white">{actualBody?.features.satellites.number}</span></h3> */}
+               {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+               {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+               {bodies && actualBody.type === "Dwarf Planet" && <NavBar bodies={bodies.dwarfPlanets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+               {bodies && (actualBody.type === "Asteroid" || actualBody.type === "Asteroid/Dwarf Planet") && <NavBar bodies={bodies.asteroids} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+               {bodies && actualBody.type === "Galaxy" && <NavBar bodies={bodies.galaxies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
+         
           </div>
 
             {/* SECOND LINE */}
@@ -93,15 +80,25 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
             <div className={`image-wrapper p-4 ${border} flex-2`}>
               <img src={actualBody.images.png} alt={actualBody?.name} className=" animate-[entrance_0.2s_0.1s_backwards]" key={actualBody?.id}/>
             </div>
-            <div className={`description flex flex-col justify-center ${border} p-4 flex-3`}>
+            <div className={`description flex flex-col justify-around  ${border} p-4 flex-3`}>
+              <div className="flex flex-row items-center justify-between">
+                <h2 className={`text-white font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
+                <div className="flex flex-row gap-2">
+                <h3 className={`${textColor} font-opensans font-bold`}>{actualBody?.type.toLocaleUpperCase()}</h3>
+                {actualBody.subtype && <h3 className={`${textColor} font-opensans font-bold`}>- {actualBody?.subtype?.toLocaleUpperCase()}</h3>}
+                </div>
+                
+              </div>
               {/* <h3 className="text-white text-xl font-bold mb-4">Description</h3> */}
               <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
             </div>
             <div className={`buttons-container${border} flex-1`}>
               <div className="flex flex-col justify-evenly p-4 h-full w-full" key={actualBody?.id}>
-                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards]hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 1</button>
+                {/* <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards]hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 1</button>
                 <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 2</button>
-                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 3</button>
+                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 3</button> */}
+
+                <Buttons actualBody={actualBody} border={border} />
                 </div>
             </div>
           </div>

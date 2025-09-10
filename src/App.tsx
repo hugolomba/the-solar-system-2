@@ -21,7 +21,7 @@ function App() {
     
       
       <div className="h-screen mt-4 flex flex-col justify-between items-center min-h-screen text-center gap-8">
-      <Marquee />
+      {/* <Marquee /> */}
       
       {/* {bodies && bodyType === "Stars" && <NavBar bodies={bodies.stars} />}
       {bodies && bodyType === "Planets" && <NavBar bodies={bodies.planets} />}

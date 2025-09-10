@@ -28,7 +28,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
     // const activeBody = 
 
     return (
-      <div className="w-full flex flex-col items-center">
+      <div className="w-full flex flex-col items-center mb-4">
       <h1 className="text-white font-skcuber text-5xl mt-8 "><Link to="/">The Solar System 2.0</Link></h1>
       <nav className="text-white flex flex-col justify-between  ">
         {/* <span className="font-bold">STARS | PLANETS | DWARF PLANETS | ASTEROIDS | GALAXIES</span> */}
