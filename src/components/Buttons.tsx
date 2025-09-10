@@ -6,6 +6,8 @@
 
 import { a } from "framer-motion/client";
 import { useState } from "react";
+import Weigh from "./Weigh";
+import Age from "./Age";
 
 
 
@@ -30,15 +32,7 @@ const Buttons = ({ actualBody, border }) => {
     window.scrollTo(0, 0);
   };
 
-  const findWord = (actualBody) => {
-  if (actualBody.type === "Galaxy" && actualBody.name === "Milky Way") { 
-    return "in the";
-  } else if (actualBody.type === "Star" || actualBody.type === "Galaxy") {
-    return "in";
-  } else {
-    return "on";
-  }
-};
+
 
 console.log(">>>>>>", actualBody.type === "Galaxy" && actualBody.name === "Milky Way")
 
@@ -63,6 +57,18 @@ console.log(">>>>>>", actualBody.type === "Galaxy" && actualBody.name === "Milky
       <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="galleryButton" onClick={clickHandler}>
         NASA Image Gallery
       </button>
+
+      {actualBody.features && showWeight ? (
+        <Weigh clickHandler={clickHandler} actualBody={actualBody} />
+      ) : (
+        ""
+      )}
+
+        {actualBody.features && showAge ? (
+        <Age clickHandler={clickHandler} actualBody={actualBody} />
+      ) : (
+        ""
+      )}
 
       {/* {actualBody.features && showWeight ? (
         <Peso clickHandler={clickHandler} actualBody={actualBody} />
