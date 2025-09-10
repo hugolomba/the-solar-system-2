@@ -38,6 +38,8 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
 
   const border = `bg-gradient-to-t from-blue-400/10 to-transparent border ${borderColor} rounded-md animate-[entrance_0.4s_0.8s_backwards]`;
+
+
  
   const currentIndex = allBodies?.findIndex(b => b.name === actualBody?.name) ?? -1;
   const prevBody = currentIndex > -1 && allBodies ? allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1] : undefined;

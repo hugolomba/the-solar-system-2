@@ -38,14 +38,12 @@ const Age = ({ actualBody, clickHandler }) => {
   };
 
   return (
-    <div className="age-bg absolute text-white top-0 left-0 w-full h-full flex justify-center items-center bg-black/80 z-50">
+    <div className="age-bg absolute text-white top-0 left-0 w-full h-full flex justify-center items-center bg-black/95 z-50">
       <div className={`weigh-container
-     [border-radius:255px_15px_225px_15px/15px_225px_15px_255px] 
-     border-10 border-white 
+     bg-gradient-to-t from-blue-400/40 to-blue-400/20 border border-blue-400 rounded-md animate-[entrance_0.2s_0.3s_backwards]
      relative 
      w-3xl h-1/2
-     flex flex-col justify-evenly items-center text-center
-     bg-indigo-500`}>
+     flex flex-col justify-evenly items-center text-center`}>
         <AiFillCloseCircle name="closeButton" onClick={clickHandler} />
 
         <h2 className={`actualBody${actualBody.id}`}>

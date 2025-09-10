@@ -8,6 +8,7 @@ import { a } from "framer-motion/client";
 import { useState } from "react";
 import Weigh from "./Weigh";
 import Age from "./Age";
+import GalleryPage from "./GalleryPage";
 
 
 
@@ -66,6 +67,12 @@ console.log(">>>>>>", actualBody.type === "Galaxy" && actualBody.name === "Milky
 
         {actualBody.features && showAge ? (
         <Age clickHandler={clickHandler} actualBody={actualBody} />
+      ) : (
+        ""
+      )}
+
+      {actualBody.features && showGallery ? (
+        <GalleryPage clickHandler={clickHandler} actualBody={actualBody} />
       ) : (
         ""
       )}
