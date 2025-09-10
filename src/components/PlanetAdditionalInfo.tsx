@@ -5,11 +5,11 @@ export default function PlanetAdditionalInfo( { actualBody, textColor }: { actua
   return (
 console.log("PlanetAdditionalInfo actualBody:", textColor),
 
-    <div className="additional-info flex flex-row flex-wrap gap-4 justify-between items-center">
+    <div className="additional-info flex flex-row flex-wrap gap-4 justify-between items-center animate-[entrance_0.2s_0.1s_backwards]" key={actualBody.id}>
 
         <div className="info-card flex flex-col items-center">
             <h4 className={`${textColor} font-bold`}>SUN DISTANCE</h4>
-            <h5 className="text-white">{actualBody.features.sunDistance}</h5>
+            <h5 className="text-white ">{actualBody.features.sunDistance}</h5>
           </div>
 
           <div className="info-card flex flex-col items-center">

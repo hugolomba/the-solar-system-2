@@ -28,6 +28,27 @@ export function AppProvider({ children } : { children: React.ReactNode }) {
     fetchBodies();
   }, []);
 
+const colorsMap: Record<string, string> = {
+  Sun: "#ff7800",
+  Mercury: "#2f6ba0",
+  Venus: "#dda516",
+  Earth: "#5cb4f7",
+  Mars: "#ca5847",
+  Jupiter: "#e1888d",
+  Saturn: "#d4b372",
+  Uranus: "#3780c3",
+  Neptune: "#6893fa",
+  Pluto: "#e1b294",
+  Haumea: "#c9a98a",
+  Makemake: "#c79971",
+  Eris: "#bdbdbd",
+  Ceres: "#a9a9a9",
+  Vesta: "#969696",
+  Eros: "#828282",
+  Milkyway: "#fbfaff",
+  Andromeda: "#b496ff",
+};  
+
 
 const colorsMapText: Record<string, string> = {
   Sun: "text-[#ff7800]",
@@ -46,7 +67,7 @@ const colorsMapText: Record<string, string> = {
   Ceres: "text-[#a9a9a9]",
   Vesta: "text-[#969696]",
   Eros: "text-[#828282]",
-  Milkyway: "text-[#c8b4ff]",
+  Milkyway: "text-[#fbfaff]",
   Andromeda: "text-[#b496ff]",
 };
 
@@ -67,7 +88,7 @@ const colorsMapBackground: Record<string, string> = {
   Ceres: "bg-[#a9a9a9]",
   Vesta: "bg-[#969696]",
   Eros: "bg-[#828282]",
-  Milkyway: "bg-[#c8b4ff]",
+  Milkyway: "bg-[#fbfaff]",
   Andromeda: "bg-[#b496ff]",
 };
 
@@ -88,7 +109,7 @@ const colorsMapBorder: Record<string, string> = {
   Ceres: "border-[#a9a9a9]",
   Vesta: "border-[#969696]",
   Eros: "border-[#828282]",
-  Milkyway: "border-[#c8b4ff]",
+  Milkyway: "border-[#fbfaff]",
   Andromeda: "border-[#b496ff]",
 };
 
@@ -109,7 +130,7 @@ const colorsMapTextHover: Record<string, string> = {
   Ceres: "hover:text-[#a9a9a9]",
   Vesta: "hover:text-[#969696]",
   Eros: "hover:text-[#828282]",
-  Milkyway: "hover:text-[#c8b4ff]",
+  MilkyWay: "hover:text-[#fbfaff]",
   Andromeda: "hover:text-[#b496ff]",
 };
 
@@ -122,7 +143,7 @@ const colorsMapTextHover: Record<string, string> = {
   ];
 
   return (
-    <AppContext.Provider value={{ bodies, setBodies, isLoading, allBodies, colorsMapText, actualBody, setActualBody, colorsMapBackground, colorsMapBorder, colorsMapTextHover }}>
+    <AppContext.Provider value={{ bodies, setBodies, isLoading, allBodies, colorsMapText, actualBody, setActualBody, colorsMapBackground, colorsMapBorder, colorsMapTextHover, colorsMap }}>
       {children}
     </AppContext.Provider>
   );

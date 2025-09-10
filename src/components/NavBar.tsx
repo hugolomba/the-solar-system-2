@@ -31,6 +31,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
       <div className="w-full flex flex-col items-center">
       <h1 className="text-white font-skcuber text-5xl mt-8 "><Link to="/">The Solar System 2.0</Link></h1>
       <nav className="text-white flex flex-col justify-between  ">
+        {/* <span className="font-bold">STARS | PLANETS | DWARF PLANETS | ASTEROIDS | GALAXIES</span> */}
         <ul className="flex flex-row gap-4 list-none items-center font-leaguespart text-lg mt-4">
           {bodies.length > 0 &&
             bodies.map((body) => {

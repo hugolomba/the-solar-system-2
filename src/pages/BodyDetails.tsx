@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import NavBar from "../components/NavBar"
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
-  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody } = useApp();
+  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
   const { bodyName } = useParams<{ bodyName?: string }>(); // bodyName pode ser undefined
 
   function normalizeName(name: string) {
@@ -22,10 +22,22 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
     }
   }, [bodyName, allBodies, setActualBody]);
 
+
+  console.log("skjskjdksjd", normalizeName)
+
+
+  const color = actualBody ? colorsMap[actualBody.name] : "";
   const textColor = actualBody ? colorsMapText[actualBody.name] : "";
   const borderColor = actualBody ? colorsMapBorder[actualBody.name] : "";
   const hoverTextColor = actualBody ? colorsMapTextHover[actualBody.name] : "";
 
+  // const hoverColor = `hover:bg-[${color}]`;
+
+
+
+
+  const border = `bg-gradient-to-t from-blue-400/10 to-transparent border ${borderColor} rounded-md animate-[entrance_0.4s_0.8s_backwards]`;
+ 
   const currentIndex = allBodies?.findIndex(b => b.name === actualBody?.name) ?? -1;
   const prevBody = currentIndex > -1 && allBodies ? allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1] : undefined;
   const nextBody = currentIndex > -1 && allBodies ? allBodies[currentIndex + 1] ?? allBodies[0] : undefined;
@@ -33,6 +45,8 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   if (!actualBody) {
     return <div className="text-white text-center mt-10">Body not found</div>;
   }
+
+  console.log(actualBody.name)
 
   return (
     <>
@@ -42,15 +56,15 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
       {bodies && (actualBody.type === "Asteroid" || actualBody.type === "Asteroid/Dwarf Planet") && <NavBar bodies={bodies.asteroids} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
       {bodies && actualBody.type === "Galaxy" && <NavBar bodies={bodies.galaxies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
       
-      <div className="flex flex-row justify-between items-center ">
+      <div className="flex flex-row justify-between items-center w-full h-full ">
         <div className="seta-left">
           <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
             <MdNavigateBefore className={`${textColor} text-6xl`} />
           </Link>
         </div>
 
-        <div className="details-container flex flex-row items-center gap-6 w-full">
-          <img src={actualBody.images.png} alt={actualBody?.name} className="w-1/3 motion-safe:animate-[spin_400s_linear_infinite]" />
+        <div className="details-container flex flex-col items-center gap-2 w-full h-full ">
+          {/* <img src={actualBody.images.png} alt={actualBody?.name} className="w-1/3 motion-safe:animate-[spin_400s_linear_infinite]" />
           <div className="info-container flex flex-col gap-4 p-4">
             <div className="title flex flex-row justify-between w-full">
               <h2 className={`${textColor} font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
@@ -66,7 +80,41 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
             <div className="additional-info-container">
               {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
             </div>
+          </div> */}
+
+          {/* first line */}
+          <div className={`title flex flex-row items-center justify-between w-full px-4 py-2 ${border}`}>
+            <h2 className={`text-white font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
+            <h3 className={`${textColor} font-opensans font-bold`}>SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}: <span className="text-white">{actualBody?.features.satellites.number}</span></h3>
           </div>
+
+            {/* SECOND LINE */}
+          <div className={`flex flex-row gap-2 w-full`}>
+            <div className={`image-wrapper p-4 ${border} flex-2`}>
+              <img src={actualBody.images.png} alt={actualBody?.name} className=" animate-[entrance_0.2s_0.1s_backwards]" key={actualBody?.id}/>
+            </div>
+            <div className={`description flex flex-col justify-center ${border} p-4 flex-3`}>
+              {/* <h3 className="text-white text-xl font-bold mb-4">Description</h3> */}
+              <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
+            </div>
+            <div className={`buttons-container${border} flex-1`}>
+              <div className="flex flex-col justify-evenly p-4 h-full w-full" key={actualBody?.id}>
+                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards]hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 1</button>
+                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 2</button>
+                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 3</button>
+                </div>
+            </div>
+          </div>
+
+            {/* THIRD LINE */}
+          <div className={`bottom-info w-full h-full p-4 ${border}`}>
+            {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
+
+
+          </div>
+        
+
+
         </div>
 
         <div className="seta-right">

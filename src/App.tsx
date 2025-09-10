@@ -20,7 +20,7 @@ function App() {
   return (
     
       
-      <div className="h-screen mt-4 flex flex-col justify-between items-center min-h-screen text-center">
+      <div className="h-screen mt-4 flex flex-col justify-between items-center min-h-screen text-center gap-8">
       <Marquee />
       
       {/* {bodies && bodyType === "Stars" && <NavBar bodies={bodies.stars} />}

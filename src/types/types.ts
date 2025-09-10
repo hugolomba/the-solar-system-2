@@ -115,5 +115,6 @@ export type AppContextType = {
   colorsMapBackground: Record<string, string>;
   colorsMapBorder: Record<string, string>;
   colorsMapTextHover: Record<string, string>;
+  colorsMap: Record<string, string>;
 }
 

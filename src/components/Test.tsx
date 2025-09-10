@@ -1,11 +1,11 @@
 // import { useState } from "react";
 // import FuturisticButton from "./FuturisticButton";
 
-// export default function FuturisticCard({ id, label, isActive, onClick }) {
-//   return (
-//     <FuturisticButton label={"Hello"} />
-//   );
-// }
+export default function FuturisticCard() {
+  return (
+    <h1 className="text-white">Test</h1>
+  );
+}
 
 // // Exemplo de uso
 // // export default function App() {
