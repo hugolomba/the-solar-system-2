@@ -6,9 +6,10 @@
 
 import { a } from "framer-motion/client";
 import { useState } from "react";
-import Weigh from "./Weigh";
+import Weigh from "./Conversion";
 import Age from "./Age";
 import GalleryPage from "./GalleryPage";
+import Conversion from "./Conversion";
 
 
 
@@ -60,13 +61,13 @@ console.log(">>>>>>", actualBody.type === "Galaxy" && actualBody.name === "Milky
       </button>
 
       {actualBody.features && showWeight ? (
-        <Weigh clickHandler={clickHandler} actualBody={actualBody} />
+        <Conversion clickHandler={clickHandler} actualBody={actualBody} type="weight" />
       ) : (
         ""
       )}
 
         {actualBody.features && showAge ? (
-        <Age clickHandler={clickHandler} actualBody={actualBody} />
+        <Conversion clickHandler={clickHandler} actualBody={actualBody} type="age" />
       ) : (
         ""
       )}
