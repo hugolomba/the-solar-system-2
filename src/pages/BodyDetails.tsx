@@ -12,8 +12,9 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   const { bodyName } = useParams<{ bodyName?: string }>(); 
 
   function normalizeName(name: string) {
-    return name.toLowerCase().replace(/\s+/g, '-');
+    return name?.toLowerCase().replace(/\s+/g, '-');
   }
+
 
   useEffect(() => {
     if (bodyName && allBodies) {
@@ -22,8 +23,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
     }
   }, [bodyName, allBodies, setActualBody]);
 
-
-  console.log("skjskjdksjd", normalizeName)
+  
 
 
   const color = actualBody ? colorsMap[actualBody.name] : "";
@@ -41,7 +41,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
     return <div className="text-white text-center mt-10">Body not found</div>;
   }
 
-  console.log(actualBody.name)
+ 
 
   return (
     <>
@@ -50,7 +50,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
       <div className="flex flex-row justify-between items-center w-full h-full ">
         <div className="seta-left">
           <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
-            <MdNavigateBefore className={`${textColor} text-6xl`} />
+            <MdNavigateBefore className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards]`} />
           </Link>
         </div>
 
@@ -85,7 +85,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
               <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
             </div>
             <div className={`buttons-container${border} flex-1`}>
-              <div className="flex flex-col justify-evenly p-4 h-full w-full" key={actualBody?.id}>
+              <div className="flex flex-col justify-evenly p-4 h-full w-full animate-[entrance_0.2s_0.1s_backwards]">
 
                 <Buttons actualBody={actualBody} border={border} />
                 </div>
@@ -103,7 +103,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
         <div className="seta-right">
           <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name ?? "")}`}>
-            <MdNavigateNext className={`${textColor} text-6xl`} />
+            <MdNavigateNext className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards]`} />
           </Link>
         </div>
 

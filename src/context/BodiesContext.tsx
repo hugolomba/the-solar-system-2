@@ -90,7 +90,7 @@ const colorsMapBackground: Record<string, string> = {
   Ceres: "bg-[#a9a9a9]",
   Vesta: "bg-[#969696]",
   Eros: "bg-[#828282]",
-  Milkyway: "bg-[#fbfaff]",
+  "Milky Way": "bg-[#fbfaff]",
   Andromeda: "bg-[#b496ff]",
 };
 
@@ -111,7 +111,7 @@ const colorsMapBorder: Record<string, string> = {
   Ceres: "border-[#a9a9a9]",
   Vesta: "border-[#969696]",
   Eros: "border-[#828282]",
-  Milkyway: "border-[#fbfaff]",
+  "Milky Way": "border-[#fbfaff]",
   Andromeda: "border-[#b496ff]",
 };
 
@@ -132,7 +132,7 @@ const colorsMapTextHover: Record<string, string> = {
   Ceres: "hover:text-[#a9a9a9]",
   Vesta: "hover:text-[#969696]",
   Eros: "hover:text-[#828282]",
-  MilkyWay: "hover:text-[#fbfaff]",
+  "Milky Way": "hover:text-[#fbfaff]",
   Andromeda: "hover:text-[#b496ff]",
 };
 

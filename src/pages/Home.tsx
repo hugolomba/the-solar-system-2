@@ -36,7 +36,7 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
 
     <div className="absolute top-0 left-[-50px] h-full w-[5px] bg-blue-400 animate-[entrance_0.4s_1.2s_backwards]">
         <span className="absolute left-[-150px] top-[-17px] block transform -rotate-90 origin-[100%_100%] text-white/30 uppercase font-medium">
-          D7460N sci-fi ui #X
+          
         </span>
       </div>
 

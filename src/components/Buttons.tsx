@@ -8,23 +8,24 @@
 import { useState } from "react";
 import GalleryPage from "./GalleryPage";
 import Conversion from "./Conversion";
+import type { BaseBody } from "@/types/types";
 
 
 
 
 
-const Buttons = ({ actualBody, border }) => {
+const Buttons = ({ actualBody, border }: { actualBody: BaseBody, border: string }) => {
   const [showWeight, setShowWeight] = useState(false);
   const [showAge, setShowAge] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
 
   console.log(actualBody);
 
-  const clickHandler = (e) => {
-    if (e.target.name === "weigthButton") setShowWeight(!showWeight);
-    if (e.target.name === "ageButton") setShowAge(!showAge);
-    if (e.target.name === "galleryButton") setShowGallery(!showGallery);
-    if (!e.target.name) {
+  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (e.currentTarget.name === "weightButton") setShowWeight(!showWeight);
+    if (e.currentTarget.name === "ageButton") setShowAge(!showAge);
+    if (e.currentTarget.name === "galleryButton") setShowGallery(!showGallery);
+    if (!e.currentTarget.name) {
       setShowWeight(false);
       setShowAge(false);
       setShowGallery(false);
@@ -38,23 +39,23 @@ console.log(">>>>>>", actualBody.type === "Galaxy" && actualBody.name === "Milky
 
   return (
     <div className={`flex flex-col gap-4 justify-center-safe h-full w-full`}>
-      {actualBody.name !== "Terra" ? (
-        <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="weigthButton" onClick={clickHandler}>
+      {actualBody.name === "Earth" || actualBody.type === "Galaxy" ? (
+       ""
+      ) : (
+         <button className={`text-white ${border}  hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="weightButton" onClick={clickHandler}>
           How much would you weigh here?
         </button>
-      ) : (
-        ""
       )}
 
-      {actualBody.name === "Terra" || actualBody.name === "Sol" ? (
+      {actualBody.name === "Earth" || actualBody.name === "Sun" || actualBody.type === "Galaxy" ? (
         ""
       ) : (
-        <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="ageButton" onClick={clickHandler}>
+        <button className={`text-white ${border}  hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="ageButton" onClick={clickHandler}>
           How old would you be here?
         </button>
       )}
 
-      <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="galleryButton" onClick={clickHandler}>
+      <button className={`text-white ${border}  hover:bg-blue-400/50 focus:bg-blue-400/50 p-1`} name="galleryButton" onClick={clickHandler}>
         NASA Image Gallery
       </button>
 
@@ -76,23 +77,7 @@ console.log(">>>>>>", actualBody.type === "Galaxy" && actualBody.name === "Milky
         ""
       )}
 
-      {/* {actualBody.features && showWeight ? (
-        <Peso clickHandler={clickHandler} actualBody={actualBody} />
-      ) : (
-        ""
-      )}
-
-      {actualBody.features && showAge ? (
-        <Age clickHandler={clickHandler} actualBody={actualBody} />
-      ) : (
-        ""
-      )}
-
-      {actualBody.features && showGallery ? (
-        <GalleryPage clickHandler={clickHandler} actualBody={actualBody} />
-      ) : (
-        ""
-      )} */}
+ 
     </div>
   );
 };
