@@ -4,10 +4,8 @@
 // import Age from "./Age";
 // import GalleryPage from "./GalleryPage";
 
-import { a } from "framer-motion/client";
+
 import { useState } from "react";
-import Weigh from "./Conversion";
-import Age from "./Age";
 import GalleryPage from "./GalleryPage";
 import Conversion from "./Conversion";
 

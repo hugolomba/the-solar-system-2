@@ -1,21 +1,20 @@
 import { useParams, Link } from "react-router-dom";
 import type { Planet, SolarSystemData, BaseBody } from "../types/types"; 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import PlanetAdditionalInfo from "../components/PlanetAdditionalInfo";
 import { useApp } from "@/context/BodiesContext";
 import { useEffect } from "react";
 import NavBar from "../components/NavBar"
 import Buttons from "@/components/Buttons";
+import AdditionalInfo from "../components/AdditionalInfo";
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
   const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
-  const { bodyName } = useParams<{ bodyName?: string }>(); // bodyName pode ser undefined
+  const { bodyName } = useParams<{ bodyName?: string }>(); 
 
   function normalizeName(name: string) {
     return name.toLowerCase().replace(/\s+/g, '-');
   }
 
-  // Atualiza o actualBody sempre que bodyName ou allBodies mudarem
   useEffect(() => {
     if (bodyName && allBodies) {
       const body: BaseBody | undefined = allBodies.find(b => normalizeName(b.name) === normalizeName(bodyName));
@@ -32,15 +31,8 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   const borderColor = actualBody ? colorsMapBorder[actualBody.name] : "";
   const hoverTextColor = actualBody ? colorsMapTextHover[actualBody.name] : "";
 
-  // const hoverColor = `hover:bg-[${color}]`;
-
-
-
-
   const border = `bg-gradient-to-t from-blue-400/10 to-transparent border ${borderColor} rounded-md animate-[entrance_0.4s_0.8s_backwards]`;
 
-
- 
   const currentIndex = allBodies?.findIndex(b => b.name === actualBody?.name) ?? -1;
   const prevBody = currentIndex > -1 && allBodies ? allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1] : undefined;
   const nextBody = currentIndex > -1 && allBodies ? allBodies[currentIndex + 1] ?? allBodies[0] : undefined;
@@ -67,8 +59,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
           {/* first line */}
           <div className={`title flex flex-row items-center justify-between w-full px-4 py-2 ${border}`}>
-            {/* <h2 className={`text-white font-opensans font-bold text-4xl`}>{actualBody?.name}</h2>
-            <h3 className={`${textColor} font-opensans font-bold`}>SATELLITE{actualBody?.features.satellites.number > 1 ? "S" : ""}: <span className="text-white">{actualBody?.features.satellites.number}</span></h3> */}
+
                {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
                {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
                {bodies && actualBody.type === "Dwarf Planet" && <NavBar bodies={bodies.dwarfPlanets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
@@ -91,14 +82,10 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
                 </div>
                 
               </div>
-              {/* <h3 className="text-white text-xl font-bold mb-4">Description</h3> */}
               <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
             </div>
             <div className={`buttons-container${border} flex-1`}>
               <div className="flex flex-col justify-evenly p-4 h-full w-full" key={actualBody?.id}>
-                {/* <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards]hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 1</button>
-                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 2</button>
-                <button className={`text-white ${border} animate-[entrance_0.2s_0.1s_backwards] hover:bg-blue-400/50 focus:bg-blue-400/50`} >Test 3</button> */}
 
                 <Buttons actualBody={actualBody} border={border} />
                 </div>
@@ -107,9 +94,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
             {/* THIRD LINE */}
           <div className={`bottom-info w-full h-full p-4 ${border}`}>
-            {actualBody?.type === "Planet" && <PlanetAdditionalInfo actualBody={actualBody as Planet} textColor={textColor} />}
-
-
+            <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
         
 

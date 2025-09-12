@@ -10,6 +10,7 @@ export function AppProvider({ children } : { children: React.ReactNode }) {
   const [bodies, setBodies] = useState<SolarSystemData | null>(null);
   const [actualBody, setActualBody] = useState<BaseBody | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   
 
@@ -18,8 +19,9 @@ export function AppProvider({ children } : { children: React.ReactNode }) {
       try {
         const response = await axios.get(`${import.meta.env.VITE_URL_BASE}/all`);
         setBodies(response.data);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching bodies:", error);
+        setError(error || "Failed to fetch bodies data.");
       } finally {
         setIsLoading(false);
       }
@@ -143,7 +145,7 @@ const colorsMapTextHover: Record<string, string> = {
   ];
 
   return (
-    <AppContext.Provider value={{ bodies, setBodies, isLoading, allBodies, colorsMapText, actualBody, setActualBody, colorsMapBackground, colorsMapBorder, colorsMapTextHover, colorsMap }}>
+    <AppContext.Provider value={{ bodies, setBodies, isLoading, allBodies, colorsMapText, actualBody, setActualBody, colorsMapBackground, colorsMapBorder, colorsMapTextHover, colorsMap, error }}>
       {children}
     </AppContext.Provider>
   );

@@ -12,9 +12,10 @@ import { Link } from "react-router-dom";
   activeOption: number | null;
   setActiveOption: React.Dispatch<React.SetStateAction<number | null>>;
   options: string[];
+  error: string | null;
 };
 
-export default function Home({ bodies, bodyType, setBodyType, activeOption, setActiveOption, options }: HomeProps) {  
+export default function Home({ bodies, bodyType, setBodyType, activeOption, setActiveOption, options, error }: HomeProps) {  
 
 
 
@@ -23,7 +24,7 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
     setBodyType(options[i])
    
   } 
-  console.log("activeOption:", activeOption);
+  console.log("bodies", bodies);
 
   return (
 
@@ -42,7 +43,7 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
           {/* main card */}
       <div className="p-4 flex justify-center items-center flex-8 w-full h-full bg-gradient-to-t from-blue-400/10 to-transparent border border-blue-400 rounded-md animate-[entrance_0.4s_0.8s_backwards]">
         <div className="animate-[entrance_0.2s_0.2s_backwards]" key={bodyType}>
-          <Dock bodies={bodies} bodyType={bodyType}/>
+          {!error ? <Dock bodies={bodies} bodyType={bodyType}/> : <Error error={error} />}
         </div>
 
       </div>
@@ -85,4 +86,13 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
    </>
     
   )
+}
+
+export function Error({ error }: { error: any }) {
+  return (
+    <div className="text-red-500/70 font-skcuber text-center animate-pulse">
+      <p>{error.message}</p>
+      <p>{error.code}</p>
+    </div>
+  );
 }

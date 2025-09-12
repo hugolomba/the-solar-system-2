@@ -12,9 +12,9 @@ import { AppProvider, useApp } from './context/BodiesContext'
 
 function App() {
   // const bodies = useBodies()
-  const { bodies } = useApp();
+  const { bodies, error } = useApp();
   const [bodyType, setBodyType] = useState<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies">("Planets");
-  const [activeOption, setActiveOption] = useState<number | null>(null);
+  const [activeOption, setActiveOption] = useState<number | null>(1);
   const options = ["Stars", "Planets", "Dwarf Planets", "Asteroids", "Galaxies"];
  
   return (
@@ -23,13 +23,9 @@ function App() {
       <div className="h-screen mt-4 flex flex-col justify-between items-center min-h-screen text-center gap-8">
       {/* <Marquee /> */}
       
-      {/* {bodies && bodyType === "Stars" && <NavBar bodies={bodies.stars} />}
-      {bodies && bodyType === "Planets" && <NavBar bodies={bodies.planets} />}
-      {bodies && bodyType === "Dwarf Planets" && <NavBar bodies={bodies.dwarfPlanets} />}
-      {bodies && bodyType === "Asteroids" && <NavBar bodies={bodies.asteroids} />}
-      {bodies && bodyType === "Galaxies" && <NavBar bodies={bodies.galaxies} />} */}
+     
       <Routes>
-      <Route path="/" element={<Home  bodies={bodies} bodyType={bodyType} setBodyType={setBodyType} activeOption={activeOption} setActiveOption={setActiveOption} options={options} />} />
+      <Route path="/" element={<Home  bodies={bodies} bodyType={bodyType} setBodyType={setBodyType} activeOption={activeOption} setActiveOption={setActiveOption} options={options} error={error} />} />
       <Route path="/body/:bodyName" element={<BodyDetails bodies={bodies} />} />
       <Route path="/test" element={<Test />} />
       </Routes>
