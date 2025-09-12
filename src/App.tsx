@@ -20,7 +20,7 @@ function App() {
   return (
     
       
-      <div className="h-screen mt-4 flex flex-col justify-between items-center min-h-screen text-center gap-8">
+      <div className="flex flex-col justify-between items-center min-h-screen text-center gap-8 p-2">
       {/* <Marquee /> */}
       
      

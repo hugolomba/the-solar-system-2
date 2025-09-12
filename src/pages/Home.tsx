@@ -29,10 +29,10 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
   return (
 
     <>
-  <h1 className="text-white font-skcuber text-5xl mt-8 animate-[entrance_0.4s_1.2s_backwards]"><Link to="/">The Solar System 2.0</Link></h1>
+  <h1 className="text-white font-skcuber text-5xl mt-8 animate-[entrance_0.4s_1.2s_backwards] max-md:text-xl"><Link to="/">The Solar System 2.0</Link></h1>
 
  
-  <div className="relative flex w-3xl items-center gap-4 h-1/2">
+  <div className="relative flex w-3xl min-h-80 items-center gap-4 h-70 max-md:w-full max-md:h-auto max-md:gap-6 max-md:flex-col-reverse mx-auto mt-8 mb-16 px-4 ">
 
     <div className="absolute top-0 left-[-50px] h-full w-[5px] bg-blue-400 animate-[entrance_0.4s_1.2s_backwards]">
         <span className="absolute left-[-150px] top-[-17px] block transform -rotate-90 origin-[100%_100%] text-white/30 uppercase font-medium">
@@ -49,7 +49,7 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
       </div>
 
       {/* options */}
-      <div className="relative flex flex-col flex-2 animate-[entrance_0.4s_1.4s_backwards]">
+      <div className="relative flex flex-col flex-2 animate-[entrance_0.4s_1.4s_backwards] max-md:flex-row">
         {options.map((opt, i) => (
           <button
             key={i}

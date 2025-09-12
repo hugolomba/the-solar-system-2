@@ -37,7 +37,7 @@ const GalleryPage = ({ actualBody, clickHandler }) => {
 
   return (
     <div className="gallery-container-bg absolute text-white top-0 left-0 w-full h-full flex justify-center items-center bg-black/95 z-50">
-      <div className="gallery-container w-5xl h-3/4 p-4 relative gap-4 flex flex-col bg-gradient-to-t from-blue-400/30 to-blue-400/10 border border-blue-400 rounded-md">
+      <div className="gallery-container w-5xl h-3/4 p-4 relative gap-4 flex flex-col bg-gradient-to-t from-blue-400/30 to-blue-400/10 border border-blue-400 rounded-md max-md:m-4">
         {lightboxIndex === null && <AiFillCloseCircle className="right-4 top-2 absolute text-3xl" onClick={clickHandler} />}
 
       

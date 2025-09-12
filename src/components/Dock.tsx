@@ -10,7 +10,7 @@ export default function Dock( { bodies, bodyType }: { bodies: SolarSystemData | 
     return (
         <div className="flex flex-col items-center justify-center align-middle gap-8">
             {bodyType === "Stars" && (
-                <ul className="flex flex-row gap-2">
+                <ul className="flex flex-row gap-2 mx-md:flex-col">
                     {bodies && bodies.stars.map((star) => {
                         return (
                             <li className="relative" key={star.id}>
@@ -51,7 +51,7 @@ export default function Dock( { bodies, bodyType }: { bodies: SolarSystemData | 
 
 
             {bodyType === "Planets" && (
-                <ul className="flex flex-row gap-2">
+                <ul className="flex flex-row flex-gap gap-2 items-center justify-center">
                     {bodies && bodies.planets.map((planet) => {
                         return (
                             <li className="relative" key={planet.id}>
