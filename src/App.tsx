@@ -21,7 +21,7 @@ function App() {
       <div className="flex flex-col justify-center items-center min-h-screen text-center gap-8 p-2 mx-auto max-md:p-0">
 
       
-     
+      
       <Routes>
       <Route path="/" element={<Home  bodies={bodies} bodyType={bodyType} setBodyType={setBodyType} activeOption={activeOption} setActiveOption={setActiveOption} options={options} error={error} isLoading={isLoading} />} />
       <Route path="/body/:bodyName" element={<BodyDetails bodies={bodies} />} />

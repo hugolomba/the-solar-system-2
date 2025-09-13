@@ -9,7 +9,7 @@ import AdditionalInfo from "../components/AdditionalInfo";
 
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
-  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
+  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody } = useApp();
   const { bodyName } = useParams<{ bodyName?: string }>(); 
 
   function normalizeName(name: string) {
