@@ -58,7 +58,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
 
           {/* first line */}
-          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 ${border} max-md:border-none`}>
+          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 ${border} max-md:border-none max-md:bg-none`}>
               
 
 
@@ -72,26 +72,26 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
             {/* SECOND LINE */}
           <div className={`flex flex-row gap-2 w-full max-md:flex-col`}>
-            <div className={`image-wrapper p-4 ${border} flex-2 m-auto flex justify-center items-center max-md:border-none`}>
+            <div className={`image-wrapper p-4 ${border} max-md:bg-none bg-transparent flex-2 m-auto flex justify-center items-center max-md:border-none`}>
               <img src={actualBody.images.png} alt={actualBody?.name} className=" animate-[entrance_0.2s_0.1s_backwards] max-md:w-3/4" key={actualBody?.id}/>
             </div>
-            <div className={`description flex flex-col justify-around  ${border} p-4 flex-3 max-md:border-none`}>
+            <div className={`description flex flex-col justify-around  ${border}  p-4 flex-3 max-md:border-none max-md:bg-none`}>
               <div className="flex flex-row items-center justify-between">
                 <h2 className={`text-white font-opensans font-bold text-4xl mb-2`}>{actualBody?.name}</h2>
                 <div className="flex flex-row gap-2">
                 <h3 className={`${textColor} font-opensans font-bold`}>{actualBody?.type.toLocaleUpperCase()}</h3>
                 {actualBody.subtype && <h3 className={`${textColor} font-opensans font-bold`}>- {actualBody?.subtype?.toLocaleUpperCase()}</h3>}
-                </div>
+               </div>
                 
               </div>
               <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
             </div>
 
-          <div className={`bottom-info w-full p-4 ${border} lg:hidden max-md:border-none`}>
+          <div className={`bottom-info w-full p-4 ${border} lg:hidden max-md:border-none max-md:bg-none`}>
             <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
 
-            <div className={`buttons-container${border} flex-1 max-md:border-none`}>
+            <div className={`buttons-container${border} flex-1 max-md:border-none max-md:bg-none`}>
               <div className="flex flex-col justify-evenly p-4 h-full w-full animate-[entrance_0.2s_0.1s_backwards]">
 
                 <Buttons actualBody={actualBody} border={border} />
@@ -100,7 +100,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
           </div>
 
             {/* THIRD LINE */}
-          <div className={`bottom-info w-full  p-4 ${border} max-md:hidden`}>
+          <div className={`bottom-info w-full  p-4 ${border} max-md:hidden max-md:bg-none`}>
             <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
         
