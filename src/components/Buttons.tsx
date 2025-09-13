@@ -1,10 +1,3 @@
-// import "./Buttons.css";
-// import { useState } from "react";
-// import Peso from "./Peso";
-// import Age from "./Age";
-// import GalleryPage from "./GalleryPage";
-
-
 import { useState } from "react";
 import GalleryPage from "./GalleryPage";
 import Conversion from "./Conversion";
@@ -21,17 +14,23 @@ const Buttons = ({ actualBody, border }: { actualBody: BaseBody, border: string 
 
   console.log(actualBody);
 
-  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+const clickHandler = (
+  e: React.MouseEvent<HTMLButtonElement | HTMLDivElement | SVGElement>
+) => {
+  if (e.currentTarget instanceof HTMLButtonElement) {
     if (e.currentTarget.name === "weightButton") setShowWeight(!showWeight);
     if (e.currentTarget.name === "ageButton") setShowAge(!showAge);
     if (e.currentTarget.name === "galleryButton") setShowGallery(!showGallery);
-    if (!e.currentTarget.name) {
-      setShowWeight(false);
-      setShowAge(false);
-      setShowGallery(false);
-    }
-    window.scrollTo(0, 0);
-  };
+  }
+
+  if (e.currentTarget instanceof SVGElement) {
+    setShowWeight(false);
+    setShowAge(false);
+    setShowGallery(false);
+  }
+
+  window.scrollTo(0, 0);
+};
 
 
 

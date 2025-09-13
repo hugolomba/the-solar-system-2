@@ -59,7 +59,7 @@ export default function Conversion({ actualBody, clickHandler, type }: { actualB
      flex flex-col justify-between gap-4 p-6 items-center text-center
      max-md:m-4
   `}>
-        <AiFillCloseCircle className="right-4 top-2 max-md:right-1 max-md:top-1 absolute text-3xl" name="closeButton" onClick={clickHandler} />
+        <AiFillCloseCircle className="right-4 top-2 max-md:right-1 max-md:top-1 absolute z-100 text-3xl" name="closeButton" onClick={clickHandler} />
 
         {type === "weight" ? <h2 className={`text-2xl font-bold mb-2`}>
          How much would you weigh {findWord(actualBody)} {actualBody.name}?

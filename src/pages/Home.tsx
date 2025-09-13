@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
  type HomeProps = {
   bodies: SolarSystemData | null;
   bodyType: "Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies";
-  setBodyType: React.Dispatch<string>;
+  setBodyType: React.Dispatch<React.SetStateAction<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies">>;
   activeOption: number | null;
   setActiveOption: React.Dispatch<React.SetStateAction<number | null>>;
-  options: string[];
+  options: Array<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies">;
   error: string | null;
 };
 
@@ -67,11 +67,6 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
         ))}
         </div>
 
-    {/* <p className="text-white font-leaguespart text-2xl p-6">
-      Welcome to The Solar System, where you can find information and curiosities about our solar system.
-    </p>
-
-    <Dock bodies={bodies}/> */}
 
           <style>
         {`

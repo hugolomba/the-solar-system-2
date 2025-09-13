@@ -1,13 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
+import { useApp } from './context/BodiesContext'
 import Home from './pages/Home'
-import NavBar from './components/NavBar'
-import { useBodies } from './api/api'
 import Footer from './components/Footer'
 import BodyDetails from './pages/BodyDetails'
 import Test from './components/Test'
 import Marquee from './components/Marquee'
-import { useContext, useState } from 'react'
-import { AppProvider, useApp } from './context/BodiesContext'
+
 
 
 function App() {
@@ -15,12 +14,12 @@ function App() {
   const { bodies, error } = useApp();
   const [bodyType, setBodyType] = useState<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies">("Planets");
   const [activeOption, setActiveOption] = useState<number | null>(1);
-  const options = ["Stars", "Planets", "Dwarf Planets", "Asteroids", "Galaxies"];
+  const options: Array<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies"> = ["Stars", "Planets", "Dwarf Planets", "Asteroids", "Galaxies"];
  
   return (
     
       
-      <div className="flex flex-col justify-between items-center min-h-screen text-center gap-8 p-2">
+      <div className="flex flex-col justify-center items-center min-h-screen text-center gap-8 p-2  mx-auto">
       {/* <Marquee /> */}
       
      

@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useApp } from "@/context/BodiesContext";
 import { ImMenu } from "react-icons/im";
 import { AiFillCloseCircle } from "react-icons/ai";
+import Marquee from "./Marquee";
 
 type NavBarProps = {
   bodies: Planet[] | DwarfPlanet[] | Star[] | Asteroid[] | Galaxy[]
   textColor: string;
   borderColor: string;
   hoverTextColor: string;
-
 }
 
 export default function NavBar({ bodies, textColor, borderColor, hoverTextColor }: NavBarProps)  {
@@ -20,20 +20,15 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
       const navigate = useNavigate();
       const handleMenu = () => setMenuIsOpen(!menuIsOpen);
 
-      console.log("bodies in navbar", bodies)
-      console.log("Bodytype in navbar", bodyType)
-
       function normalizeName(name: string) {
       return name.toLowerCase().replace(/\s+/g, '-')
     }
 
-    const hiddenMenu = menuIsOpen ? "" : "hidden";
+    const hiddenMenu = menuIsOpen ? "" : "max-md:hidden";
+
 
     const bodyTypes = ["Stars", "Planets", "Dwarf Planets", "Asteroids", "Galaxies"];
 
-    function handleBodyTypeChange(type: string) {
-      setBodyType(type as "Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies");
-    }
   
     function defineBodyType(type: string) {
       if (type === "Star") return "Stars";
@@ -47,13 +42,14 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
 
     return (
       <div className="w-full flex flex-col items-center mb-4 ">
+                <Marquee curiosities={actualBody?.curiosities} />
       
-      <h1 className={`text-white font-skcuber text-5xl mt-8 max-md:text-lg border-b-4 relative ${borderColor}`}><Link to="/">The Solar System 2.0</Link></h1>
-      <ImMenu className="open-menu-btn text-2xl text-white  top-0 right-0" onClick={handleMenu} />
+      <h1 className={`text-white font-skcuber text-5xl mt-8 max-md:text-lg max-md:border-b-4 relative ${borderColor} max-md:mt-10`}><Link to="/">The Solar System 2.0</Link></h1>
+      <ImMenu className="open-menu-btn text-2xl text-white absolute top-12 right-2 lg:hidden" onClick={handleMenu} />
 
       <nav className="text-white flex flex-col items-center mt-3 gap-1.5">
 
-        <ul className={`flex flex-row gap-4 list-none items-center justify-center font-leaguespart text-lg max-md:absolute max-md:top-1/4 max-md:w-3/4 z-350 max-md:text-xs ${hiddenMenu} animate-[entrance_0.2s_0.3s_backwards]`}>
+        <ul className={`flex flex-row gap-4 list-none items-center justify-center font-leaguespart text-lg max-md:absolute max-md:top-1/4 max-md:w-3/4 max-md:z-350 max-md:text-xs ${hiddenMenu} animate-[entrance_0.2s_0.3s_backwards]`}>
             {bodyTypes.map((body) => {
               return (
                 <li key={body.toLowerCase()}>
@@ -97,7 +93,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
         </ul>
           
 
-          {menuIsOpen && <MobileNavBar bodies={bodies} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} menuIsOpen={menuIsOpen} handleMenu={handleMenu}  />}
+          {menuIsOpen && <MobileNavBar menuIsOpen={menuIsOpen} handleMenu={handleMenu} />}
         </nav>
         </div>
 
@@ -105,7 +101,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
     )
 }
 
-export function MobileNavBar({ bodies, textColor, borderColor, hoverTextColor, menuIsOpen, handleMenu }: NavBarProps)  {
+export function MobileNavBar({ menuIsOpen, handleMenu }: { menuIsOpen: boolean; handleMenu: () => void }) {
   
   return (
     <div className="absolute text-white top-0 left-0 w-full h-full flex justify-center items-center bg-black/90 z-150 lg:hidden">
@@ -119,7 +115,7 @@ export function MobileNavBar({ bodies, textColor, borderColor, hoverTextColor, m
   `}>
     {menuIsOpen && <AiFillCloseCircle className="absolute text-3xl top-4 right-4 z-200" onClick={handleMenu} />}
 
-  <h1 className={`text-white font-skcuber text-xl mt-8 max-md:text-lg border-b-4 ${borderColor}`}><Link to="/">The Solar System 2.0</Link></h1>
+  {/* <h1 className={`text-white font-skcuber text-xl mt-8 max-md:text-lg border-b-4 ${borderColor}`}><Link to="/">The Solar System 2.0</Link></h1> */}
 
   
   </div>

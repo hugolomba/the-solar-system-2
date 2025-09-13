@@ -69,7 +69,7 @@ const colorsMapText: Record<string, string> = {
   Ceres: "text-[#a9a9a9]",
   Vesta: "text-[#969696]",
   Eros: "text-[#828282]",
-  Milkyway: "text-[#fbfaff]",
+  "Milky Way": "text-[#fbfaff]",
   Andromeda: "text-[#b496ff]",
 };
 

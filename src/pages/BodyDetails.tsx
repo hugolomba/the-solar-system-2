@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import NavBar from "../components/NavBar"
 import Buttons from "@/components/Buttons";
 import AdditionalInfo from "../components/AdditionalInfo";
+import Marquee from "@/components/Marquee";
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
   const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
@@ -44,21 +45,24 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
  
 
   return (
-    <>
+  
 
       
-      <div className={`flex flex-row justify-between items-center w-full h-full`}>
+      <div className={`flex flex-row justify-between items-center w-full max-w-screen`}>
+        {/* <Marquee curiosities={actualBody?.curiosities} /> */}
         <div className="seta-left">
           <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
             <MdNavigateBefore className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] max-md:hidden`} />
           </Link>
         </div>
 
-        <div className="details-container flex flex-col items-center gap-2 w-full h-full ">
+        <div className="details-container flex flex-col items-center gap-2  ">
 
 
           {/* first line */}
-          <div className={`title flex flex-row items-center justify-between w-full px-4 py-2 ${border} max-md:border-none`}>
+          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 ${border} max-md:border-none`}>
+              
+
 
                {bodies && actualBody.type === "Star" && <NavBar bodies={bodies.stars} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
                {bodies && actualBody.type === "Planet" && <NavBar bodies={bodies.planets} textColor={textColor} borderColor={borderColor} hoverTextColor={hoverTextColor} />}
@@ -85,7 +89,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
               <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
             </div>
 
-          <div className={`bottom-info w-full h-full p-4 ${border} lg:hidden max-md:border-none`}>
+          <div className={`bottom-info w-full p-4 ${border} lg:hidden max-md:border-none`}>
             <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
 
@@ -98,7 +102,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
           </div>
 
             {/* THIRD LINE */}
-          <div className={`bottom-info w-full h-full p-4 ${border} max-md:hidden`}>
+          <div className={`bottom-info w-full  p-4 ${border} max-md:hidden`}>
             <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
         
@@ -129,6 +133,6 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
           `}
         </style>
       </div>
-    </>
+ 
   );
 }
