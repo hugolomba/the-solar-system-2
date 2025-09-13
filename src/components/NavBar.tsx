@@ -73,13 +73,16 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
             })}
       
         </ul>  */}
-
-        <select
-  value={bodyType}
-  onChange={(e) => {
-    const selectedBodyType = e.target.value as "Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies";
-    setBodyType(selectedBodyType);
-    const firstBodyOfType: BaseBody | undefined = allBodies.find(
+<div className={`max-lg:text-xl max-lg:text-shadow-lg font-leaguespart text-lg max-lg:absolute max-lg:top-1/4 max-lg:w-3/4 max-lg:z-350  ${hiddenMenu} animate-[entrance_0.2s_0.3s_backwards]`}>
+  <label htmlFor="body-select" className="text-white font-oxanium mb-2">
+  Selected:
+  </label>
+  <select
+      value={bodyType}
+      onChange={(e) => {
+      const selectedBodyType = e.target.value as "Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies";
+      setBodyType(selectedBodyType);
+      const firstBodyOfType: BaseBody | undefined = allBodies.find(
       (b) => defineBodyType(b.type) === selectedBodyType
     );
     console.log("firstBodyOfType", firstBodyOfType);
@@ -88,7 +91,7 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
       navigate(`/body/${normalizeName(firstBodyOfType.name)}`);
     }
   }}
-  className={`cursor-pointer font-oxanium ${hoverTextColor} ${textColor} transition-colors duration-300 p-2 rounded-md `}
+  className={`cursor-pointer font-oxanium max-lg:text-shadow-lg ${hoverTextColor} ${textColor} transition-colors duration-300 p-2 rounded-md max-lg:text-xl`}
 >
   {bodyTypes.map((body) => (
     <option key={body.toLowerCase()} value={body}>
@@ -96,9 +99,10 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
     </option>
   ))}
 </select>
+</div>
 
 
-        <ul className={`flex flex-row gap-4 list-none items-center font-leaguespart animate-[entrance_0.2s_0.3s_backwards] text-lg max-lg:flex-col max-lg:absolute max-lg:top-2/6 max-lg:w-3/4 max-lg:h-3/4 max-lg:rounded-md max-lg:overflow-y-auto max-lg:p-4 max-lg:z-250 ${hiddenMenu}`}>
+        <ul className={`flex flex-row gap-4 max-lg:text-shadow-lg list-none items-center font-leaguespart animate-[entrance_0.2s_0.3s_backwards] text-lg max-lg:flex-col max-lg:absolute max-lg:top-2/6 max-lg:w-3/4 max-lg:h-3/4 max-lg:rounded-md max-lg:overflow-y-auto max-lg:p-4 max-lg:z-250 ${hiddenMenu}`}>
           {bodies.length > 0 &&
             bodies.map((body) => {
               return (
