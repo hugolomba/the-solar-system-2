@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export default function Marquee({ curiosities }: { curiosities?: string[] }) {
   if (!curiosities || curiosities.length === 0) return null;

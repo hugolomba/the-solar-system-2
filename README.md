@@ -1,69 +1,42 @@
-# React + TypeScript + Vite
+# The Solar System: An Interactive Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive project that displays information about celestial bodies in the solar system, including planets, dwarf planets, asteroids, and galaxies. Fully developed from scratch, with a frontend in **React + TypeScript + Tailwind** and a backend in **Node.js + Express + TypeScript**.
+I rebuilt this project, which I originally started in 2022, to enhance my skills in React, TypeScript, and full-stack development. I focused on creating a custom API, improving the design, and adding interactive animations to make the project more complete.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+* **List of celestial bodies**: Browse a comprehensive list of planets, dwarf planets, asteroids, and galaxies.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Technologies
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+* **Frontend**: React, TypeScript, Tailwind CSS
+* **Backend**: Node.js, Express, TypeScript
+* **API**: Custom-built API providing data about celestial bodies.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## How to Run the Project
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Backend
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Clone the repository**: `git clone [Solar System API](https://github.com/hugolomba/solar-system-api)`
+2.  **Navigate to the backend folder**: `cd backend`
+3.  **Install dependencies**: `npm install`
+4.  **Start the server**: `npm run dev`
+
+### Frontend
+
+1.  **Navigate to the frontend folder**: `cd frontend`
+2.  **Install dependencies**: `npm install`
+3.  **Start the project**: `npm start`
+
+---
+
+
+## Links
+
+* **Live Project**: [Live](the-solar-system.hugo-miranda.dev)

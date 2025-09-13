@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type JSX } from "react";
 import Loading from "./Loading";
 import nasaLogo from "../assets/img/nasa-logo.png";
 import axios from "axios";
 import { AiFillCloseCircle, AiOutlineLeft, AiOutlineRight, AiOutlineClose } from "react-icons/ai";
 
-const GalleryPage = ({ actualBody, clickHandler }) => {
-  const [actualBodyGallery, setActualBodyGallery] = useState(null);
+const GalleryPage = ({ actualBody, clickHandler }: { actualBody: any; clickHandler: (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement | SVGElement>) => void }) => {
+  const [actualBodyGallery, setActualBodyGallery] = useState<null | any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null); // índice da imagem aberta
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null); 
   
   useEffect(() => {
     setIsLoading(true);
@@ -20,7 +20,7 @@ const GalleryPage = ({ actualBody, clickHandler }) => {
       .finally(() => setIsLoading(false));
   }, [actualBody]);
 
-  const images = actualBodyGallery?.collection.items.map((item) => item.links[0].href) || [];
+  const images = actualBodyGallery?.collection.items.map((item: any) => item.links[0].href) || [];
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
@@ -48,11 +48,11 @@ const GalleryPage = ({ actualBody, clickHandler }) => {
             <h2 className={`actualBody${actualBody.id} text-center mb-4`}>
           NASA Image Gallery of {actualBody.name}
         </h2>
-          <div className="gallery-images w-full h-full overflow-scroll flex-1 flex flex-row flex-wrap justify-center gap-2 items-center text-center">
+          <div className="gallery-images w-full h-full overflow-scroll flex-1 flex flex-row flex-wrap justify-center gap-2 items-center text-center relative">
             { isLoading ? (
               <Loading />
             ) : (
-              images.map((src, index) => (
+              images.map((src: string, index: number): JSX.Element => (
                 <img
                   key={index}
                   className="w-50 cursor-pointer"
@@ -64,6 +64,16 @@ const GalleryPage = ({ actualBody, clickHandler }) => {
           </div>
           </>
           }
+
+          <div className="gallery-reference bottom-0 right-0 left-0 flex flex-row justify-center items-center gap-4">
+          <span>
+            Provide by{" "}
+            <a href="https://api.nasa.gov/" target="_blank">
+              NASA Image and Video Library
+            </a>
+          </span>
+          <img className="w-12" src={nasaLogo} alt="nasa-logo" />
+        </div>
 
       {lightboxIndex !== null && actualBodyGallery && ( 
   
@@ -88,15 +98,7 @@ const GalleryPage = ({ actualBody, clickHandler }) => {
   </div>
         )}
 
-        {/* <div className="gallery-reference absolute bottom-0 flex flex-row justify-center items-center gap-4">
-          <span>
-            Provide by{" "}
-            <a href="https://api.nasa.gov/" target="_blank">
-              NASA Image and Video Library
-            </a>
-          </span>
-          <img className="w-16" src={nasaLogo} alt="nasa-logo" />
-        </div> */}
+   
       </div>
     </div>
   );

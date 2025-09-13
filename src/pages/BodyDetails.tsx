@@ -6,10 +6,10 @@ import { useEffect } from "react";
 import NavBar from "../components/NavBar"
 import Buttons from "@/components/Buttons";
 import AdditionalInfo from "../components/AdditionalInfo";
-import Marquee from "@/components/Marquee";
+
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
-  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
+  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody } = useApp();
   const { bodyName } = useParams<{ bodyName?: string }>(); 
 
   function normalizeName(name: string) {
@@ -26,8 +26,6 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
   
 
-
-  const color = actualBody ? colorsMap[actualBody.name] : "";
   const textColor = actualBody ? colorsMapText[actualBody.name] : "";
   const borderColor = actualBody ? colorsMapBorder[actualBody.name] : "";
   const hoverTextColor = actualBody ? colorsMapTextHover[actualBody.name] : "";
