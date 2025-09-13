@@ -1,4 +1,5 @@
 
+import Loading from "@/components/Loading";
 import Dock from "../components/Dock";
 import type { SolarSystemData } from "../types/types";
 
@@ -13,10 +14,10 @@ import { Link } from "react-router-dom";
   setActiveOption: React.Dispatch<React.SetStateAction<number | null>>;
   options: Array<"Stars" | "Planets" | "Dwarf Planets" | "Asteroids" | "Galaxies">;
   error: string | null;
+  isLoading: boolean;
 };
 
-export default function Home({ bodies, bodyType, setBodyType, activeOption, setActiveOption, options, error }: HomeProps) {  
-
+export default function Home({ bodies, bodyType, setBodyType, activeOption, setActiveOption, options, error, isLoading }: HomeProps) {
 
 
   const handleClick = (i: number) => {
@@ -30,20 +31,26 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
 
     <>
   <h1 className="text-white font-skcuber text-5xl mt-8 animate-[entrance_0.4s_1.2s_backwards] max-md:text-xl"><Link to="/">The Solar System 2.0</Link></h1>
+  <div className="">
+  <p className="text-white/70 font-oxanium text-sm max-w-md mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2">Explore the wonders of our universe with The Solar System 2.0</p>
+  <p className="text-white/70 font-oxanium text-sm max-w-md mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2">Dive into detailed information about stars, planets, dwarf planets, asteroids, and galaxies.</p>
+  <p className="text-white/70 font-oxanium text-sm max-w-md mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2">Click on any celestial body to learn more about its unique characteristics and fascinating facts.</p>
+</div>
+   {/* main container */}
 
  
   <div className="relative flex w-3xl min-h-80 items-center gap-4 h-70 max-md:w-full max-md:h-auto max-md:gap-6 max-md:flex-col-reverse mx-auto mt-8 mb-16 px-4 ">
 
-    <div className="absolute top-0 left-[-50px] h-full w-[5px] bg-blue-400 animate-[entrance_0.4s_1.2s_backwards]">
+    <div className="absolute top-0 left-[-50px] h-full w-[5px] bg-blue-400 animate-[entrance_0.4s_1.2s_backwards] shadow-[0px_0px_8px_1px_#0037ff]" >
         <span className="absolute left-[-150px] top-[-17px] block transform -rotate-90 origin-[100%_100%] text-white/30 uppercase font-medium">
           
         </span>
       </div>
 
           {/* main card */}
-      <div className="p-4 flex justify-center items-center flex-8 w-full h-full bg-gradient-to-t from-blue-400/10 to-transparent border border-blue-400 rounded-md animate-[entrance_0.4s_0.8s_backwards]">
+      <div className="p-4 flex justify-center items-center flex-8 w-full h-full bg-gradient-to-t from-blue-400/10 to-transparent border border-blue-400 rounded-md animate-[entrance_0.4s_0.8s_backwards] shadow-[0px_0px_8px_1px_#0037ff]">
         <div className="animate-[entrance_0.2s_0.2s_backwards]" key={bodyType}>
-          {!error ? <Dock bodies={bodies} bodyType={bodyType}/> : <Error error={error} />}
+          {isLoading ? <Loading /> : !error ? <Dock bodies={bodies} bodyType={bodyType}/> : <Error error={error} />}
         </div>
 
       </div>
@@ -54,7 +61,7 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
           <button
             key={i}
             onClick={() => handleClick(i)}
-            className={`w-full h-10 px-2 mr-2 mb-4 border-2 border-black outline-1 outline-blue-400  text-white text-sm font-oxanium tracking-wide cursor-pointer transition-all duration-300
+            className={`w-full h-10 px-2 mr-2 mb-4 border-2 border-black outline-1 outline-blue-400  text-white text-sm font-oxanium tracking-wide cursor-pointer transition-all duration-300 shadow-[0px_0px_8px_1px_#0037ff]
               ${
                 activeOption === i
                   ? "bg-blue-400/50 text-blue-400 "

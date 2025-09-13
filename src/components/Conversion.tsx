@@ -68,7 +68,7 @@ export default function Conversion({ actualBody, clickHandler, type }: { actualB
         </h2>}
 
         <div className="convert-container flex flex-col gap-4 justify-center items-center">
-          <label className="" htmlFor="earth-weight">Enter your {type === "weight" ? "weight" : "age"} on Earth</label>
+          <label className="" htmlFor="earth-weight">Enter your {type === "weight" ? "weight" : "age"} {findWord(actualBody)} {actualBody.name}</label>
           <input
             className="input-weight-age w-40 border text-center p-1 rounded-md"
             type="number"

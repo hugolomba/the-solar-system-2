@@ -9,7 +9,7 @@ import AdditionalInfo from "../components/AdditionalInfo";
 
 
 export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null }) {
-  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody } = useApp();
+  const { allBodies, colorsMapText, colorsMapBorder, colorsMapTextHover, actualBody, setActualBody, colorsMap } = useApp();
   const { bodyName } = useParams<{ bodyName?: string }>(); 
 
   function normalizeName(name: string) {
@@ -31,6 +31,8 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   const hoverTextColor = actualBody ? colorsMapTextHover[actualBody.name] : "";
 
   const border = `bg-gradient-to-t from-blue-400/10 to-transparent border ${borderColor} rounded-md animate-[entrance_0.4s_0.8s_backwards]`;
+  
+ 
 
   const currentIndex = allBodies?.findIndex(b => b.name === actualBody?.name) ?? -1;
   const prevBody = currentIndex > -1 && allBodies ? allBodies[currentIndex - 1] ?? allBodies[allBodies.length - 1] : undefined;
@@ -46,7 +48,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
   
 
       
-      <div className={`flex flex-row justify-between items-center w-full max-w-screen`}>
+      <div className={`flex flex-row justify-between items-center w-full max-w-screen `}>
         {/* <Marquee curiosities={actualBody?.curiosities} /> */}
         <div className="seta-left">
           <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
@@ -58,7 +60,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
 
           {/* first line */}
-          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 ${border} max-md:border-none max-md:bg-none`}>
+          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 max-md:p-0 ${border} max-md:border-none max-md:bg-none`}>
               
 
 
@@ -75,6 +77,25 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
             <div className={`image-wrapper p-4 ${border} max-md:bg-none bg-transparent flex-2 m-auto flex justify-center items-center max-md:border-none`}>
               <img src={actualBody.images.png} alt={actualBody?.name} className=" animate-[entrance_0.2s_0.1s_backwards] max-md:w-3/4" key={actualBody?.id}/>
             </div>
+
+{/* mobile navigation */}
+          <div className="navigation-mobile flex justify-between lg:hidden">
+
+          <div className="seta-left">
+          <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
+            <MdNavigateBefore className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] lg:hidden`} />
+          </Link>
+        </div>
+
+          
+          <div className="seta-right">
+          <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name ?? "")}`}>
+            <MdNavigateNext className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] lg:hidden`} />
+          </Link>
+        </div>
+
+        </div>
+
             <div className={`description flex flex-col justify-around  ${border}  p-4 flex-3 max-md:border-none max-md:bg-none`}>
               <div className="flex flex-row items-center justify-between">
                 <h2 className={`text-white font-opensans font-bold text-4xl mb-2`}>{actualBody?.name}</h2>
@@ -113,6 +134,23 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
             <MdNavigateNext className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] max-md:hidden`} />
           </Link>
         </div>
+
+        {/* <div className="navigation">
+
+          <div className="seta-left">
+          <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
+            <MdNavigateBefore className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] lg:hidden`} />
+          </Link>
+        </div>
+
+          
+          <div className="seta-right">
+          <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name ?? "")}`}>
+            <MdNavigateNext className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] lg:hidden`} />
+          </Link>
+        </div>
+
+        </div> */}
 
         <style>
           {`

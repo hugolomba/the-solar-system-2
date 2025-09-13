@@ -66,13 +66,13 @@ const GalleryPage = ({ actualBody, clickHandler }: { actualBody: any; clickHandl
           }
 
           <div className="gallery-reference bottom-0 right-0 left-0 flex flex-row justify-center items-center gap-4">
-          <span>
+          <span className="text-sm">
             Provide by{" "}
             <a href="https://api.nasa.gov/" target="_blank">
               NASA Image and Video Library
             </a>
           </span>
-          <img className="w-12" src={nasaLogo} alt="nasa-logo" />
+          <img className="w-10" src={nasaLogo} alt="nasa-logo" />
         </div>
 
       {lightboxIndex !== null && actualBodyGallery && ( 

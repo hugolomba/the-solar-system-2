@@ -41,11 +41,11 @@ export default function NavBar({ bodies, textColor, borderColor, hoverTextColor 
 
 
     return (
-      <div className="w-full flex flex-col items-center mb-4 ">
-                <Marquee curiosities={actualBody?.curiosities} />
+      <div className="w-full flex flex-col items-center mb-4">
+      <Marquee curiosities={actualBody?.curiosities} />
       
-      <h1 className={`text-white font-skcuber text-5xl mt-8 max-md:text-lg max-md:border-b-4 relative ${borderColor} max-md:mt-10`}><Link to="/">The Solar System 2.0</Link></h1>
-      <ImMenu className="open-menu-btn text-2xl text-white absolute top-14 right-2 lg:hidden" onClick={handleMenu} />
+      <h1 className={`text-white font-skcuber text-5xl mt-8 max-md:text-xl max-md:border-b-4 relative ${borderColor} max-md:mt-12`}><Link to="/">The Solar System</Link></h1>
+      <ImMenu className="open-menu-btn text-2xl text-white absolute top-12 right-3 lg:hidden" onClick={handleMenu} />
 
       <nav className="text-white flex flex-col items-center mt-3 gap-1.5">
 

@@ -14,11 +14,11 @@ export default function SciFiLoader() {
           cx="50"
           cy="50"
           r="45"
-          stroke="#0ff"
+          stroke=""
           strokeWidth="4"
           strokeOpacity="0.6"
           className="animate-spin-slow"
-          style={{ filter: "drop-shadow(0 0 10px #0ff)" }}
+          style={{ filter: "drop-shadow(0 0 2px )" }}
         />
 
         {/* Inner rotating arcs */}
@@ -26,28 +26,28 @@ export default function SciFiLoader() {
           cx="50"
           cy="50"
           r="35"
-          stroke="#f0f"
+          stroke="white"
           strokeWidth="4"
           strokeDasharray="50"
           strokeDashoffset="0"
           strokeLinecap="round"
           fill="none"
           className="animate-spin-fast"
-          style={{ filter: "drop-shadow(0 0 8px #f0f)" }}
+          style={{ filter: "drop-shadow(0 0 4px white)" }}
         />
 
         <circle
           cx="50"
           cy="50"
           r="25"
-          stroke="#ff0"
+          stroke="white"
           strokeWidth="3"
           strokeDasharray="40"
           strokeDashoffset="0"
           strokeLinecap="round"
           fill="none"
           className="animate-spin-reverse"
-          style={{ filter: "drop-shadow(0 0 6px #ff0)" }}
+          style={{ filter: "drop-shadow(0 0 6px white)" }}
         />
 
         {/* Center neon dot */}
@@ -55,8 +55,8 @@ export default function SciFiLoader() {
           cx="50"
           cy="50"
           r="5"
-          fill="#0ff"
-          style={{ filter: "drop-shadow(0 0 12px #0ff)" }}
+          fill="white"
+          style={{ filter: "drop-shadow(0 0 12px white)" }}
         />
       </svg>
 
