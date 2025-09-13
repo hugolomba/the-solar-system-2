@@ -51,15 +51,15 @@ export default function Conversion({ actualBody, clickHandler, type }: { actualB
 
 
   return (
-    <div className="absolute text-white top-0 left-0 w-full h-full flex justify-center items-center bg-black/95 z-50">
+    <div className="absolute text-white top-0 left-0 w-full h-full flex justify-center items-center bg-white/0 rounded-[16px] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[20px] z-50">
       <div className={`weigh-container
    bg-gradient-to-t from-blue-400/40 to-blue-400/20 border border-blue-400 rounded-md animate-[entrance_0.2s_0.3s_backwards]
      relative 
      w-3xl min-h-2/4
      flex flex-col justify-between gap-4 p-6 items-center text-center
-     max-md:m-4
+     max-lg:m-4
   `}>
-        <AiFillCloseCircle className="right-4 top-2 max-md:right-1 max-md:top-1 absolute z-100 text-3xl" name="closeButton" onClick={clickHandler} />
+        <AiFillCloseCircle className="right-4 top-2 max-lg:right-1 max-lg:top-1 absolute z-100 text-3xl" name="closeButton" onClick={clickHandler} />
 
         {type === "weight" ? <h2 className={`text-2xl font-bold mb-2`}>
          How much would you weigh {findWord(actualBody)} {actualBody.name}?

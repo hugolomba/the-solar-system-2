@@ -52,7 +52,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
         {/* <Marquee curiosities={actualBody?.curiosities} /> */}
         <div className="seta-left">
           <Link className={`actualBody`} to={`/body/${normalizeName(prevBody?.name ?? "")}`}>
-            <MdNavigateBefore className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] max-md:hidden`} />
+            <MdNavigateBefore className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] max-lg:hidden`} />
           </Link>
         </div>
 
@@ -60,7 +60,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
 
           {/* first line */}
-          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 max-md:p-0 ${border} max-md:border-none max-md:bg-none`}>
+          <div className={`title flex flex-row items-center justify-center w-full px-4 py-2 max-lg:p-0 ${border} max-lg:border-none max-lg:bg-none`}>
               
 
 
@@ -73,9 +73,9 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
           </div>
 
             {/* SECOND LINE */}
-          <div className={`flex flex-row gap-2 w-full max-md:flex-col`}>
-            <div className={`image-wrapper p-4 ${border} max-md:bg-none bg-transparent flex-2 m-auto flex justify-center items-center max-md:border-none`}>
-              <img src={actualBody.images.png} alt={actualBody?.name} className=" animate-[entrance_0.2s_0.1s_backwards] max-md:w-3/4" key={actualBody?.id}/>
+          <div className={`flex flex-row gap-2 w-full max-lg:flex-col`}>
+            <div className={`image-wrapper p-4 ${border} max-lg:bg-none bg-transparent flex-2 m-auto flex justify-center items-center max-lg:border-none`}>
+              <img src={actualBody.images.png} alt={actualBody?.name} className=" animate-[entrance_0.2s_0.1s_backwards] max-lg:w-3/4" key={actualBody?.id}/>
             </div>
 
 {/* mobile navigation */}
@@ -96,9 +96,9 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
         </div>
 
-            <div className={`description flex flex-col justify-around  ${border}  p-4 flex-3 max-md:border-none max-md:bg-none`}>
+            <div className={`description flex flex-col justify-around  ${border}  p-4 flex-3 max-lg:border-none max-lg:bg-none`}>
               <div className="flex flex-row items-center justify-between">
-                <h2 className={`text-white font-opensans font-bold text-4xl mb-2`}>{actualBody?.name}</h2>
+                <h2 className={`text-white font-opensans font-bold text-6xl mb-2 max-md:text-3xl`}>{actualBody?.name}</h2>
                 <div className="flex flex-row gap-2">
                 <h3 className={`${textColor} font-opensans font-bold`}>{actualBody?.type.toLocaleUpperCase()}</h3>
                 {actualBody.subtype && <h3 className={`${textColor} font-opensans font-bold`}>- {actualBody?.subtype?.toLocaleUpperCase()}</h3>}
@@ -108,11 +108,11 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
               <p className="text-white text-justify animate-[entrance_0.2s_0.1s_backwards]"  key={actualBody?.id}>{actualBody.resume}</p>
             </div>
 
-          <div className={`bottom-info w-full p-4 ${border} lg:hidden max-md:border-none max-md:bg-none`}>
+          <div className={`bottom-info w-full p-4 ${border} lg:hidden max-lg:border-none max-lg:bg-none`}>
             <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
 
-            <div className={`buttons-container${border} flex-1 max-md:border-none max-md:bg-none`}>
+            <div className={`buttons-container${border} flex-1 max-lg:border-none max-lg:bg-none`}>
               <div className="flex flex-col justify-evenly p-4 h-full w-full animate-[entrance_0.2s_0.1s_backwards]">
 
                 <Buttons actualBody={actualBody} border={border} />
@@ -121,7 +121,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
           </div>
 
             {/* THIRD LINE */}
-          <div className={`bottom-info w-full  p-4 ${border} max-md:hidden max-md:bg-none`}>
+          <div className={`bottom-info w-full  p-4 ${border} max-lg:hidden max-lg:bg-none`}>
             <AdditionalInfo actualBody={actualBody as Planet} textColor={textColor} type={actualBody.type} />
           </div>
         
@@ -131,7 +131,7 @@ export default function BodyDetails({ bodies }: { bodies: SolarSystemData | null
 
         <div className="seta-right">
           <Link className={`planet`} to={`/body/${normalizeName(nextBody?.name ?? "")}`}>
-            <MdNavigateNext className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] max-md:hidden`} />
+            <MdNavigateNext className={`${textColor} text-6xl animate-[entrance_0.4s_0.8s_backwards] max-lg:hidden`} />
           </Link>
         </div>
 

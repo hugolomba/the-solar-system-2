@@ -4,7 +4,7 @@ export default function Marquee({ curiosities }: { curiosities?: string[] }) {
   if (!curiosities || curiosities.length === 0) return null;
 
   return (
-    <div className=" w-full overflow-hidden bg-[#232776] shadow-[2px_2px_10px_#232776] px-2 py-1 max-md:absolute">
+    <div className=" w-full overflow-hidden bg-[#232776] shadow-[2px_2px_10px_#232776] px-2 py-1 max-lg:absolute">
       {/* Glow line overlay */}
       <div
         className=" inset-0 z-10 pointer-events-none"

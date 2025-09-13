@@ -14,7 +14,7 @@ export default function AdditionalInfo( { actualBody, textColor, type }: { actua
 
 export function StarAdditionalInfo( { actualBody, textColor }: { actualBody: Planet, textColor?: string } ) { 
   return (
-    <div className="additional-info flex flex-row max-md:flex-col flex-wrap gap-4 justify-between items-center animate-[entrance_0.2s_0.1s_backwards]" key={actualBody.id}>
+    <div className="additional-info flex flex-row max-lg:flex-col flex-wrap gap-4 justify-between items-center animate-[entrance_0.2s_0.1s_backwards] max-lg:justify-around max-md:flex-col" key={actualBody.id}>
 
         <div className="info-card flex flex-col items-center">
             <h4 className={`${textColor} font-bold`}>ROTATION PERIOD</h4>
