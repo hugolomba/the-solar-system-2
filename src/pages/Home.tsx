@@ -27,16 +27,16 @@ export default function Home({ bodies, bodyType, setBodyType, activeOption, setA
     setBodyType(options[i])
    
   } 
-  console.log("bodies", bodies);
+
 
   return (
 
     <>
   <h1 className="text-white font-skcuber text-5xl mt-8 animate-[entrance_0.4s_1.2s_backwards] max-lg:text-4xl max-md:text-2xl"><Link to="/">The Solar System 2.0</Link></h1>
   <div className="">
-  <p className="text-white font-oxanium text-lg max-w-md mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2 max-lg:text-3xl max-md:text-xl w-full">Explore the wonders of our universe with The Solar System 2.0</p>
-  <p className="text-white font-oxanium text-lg max-w-md mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2 max-lg:text-3xl max-md:text-xl">Dive into detailed information about stars, planets, dwarf planets, asteroids, and galaxies.</p>
-  <p className="text-white font-oxanium text-lg max-w-md mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2 max-lg:text-3xl max-md:text-xl">Click on any celestial body to learn more about its unique characteristics and fascinating facts.</p>
+  <p className="text-white font-oxanium text-xl  mx-auto animate-[entrance_0.4s_1.2s_backwards] px-2 max-lg:text-3xl max-md:text-xl w-full">Explore the wonders of our universe with The Solar System 2.0
+  <br />Dive into detailed information about stars, planets, dwarf planets, asteroids, and galaxies.
+  <br />Click on any celestial body to learn more about its unique characteristics and fascinating facts.</p>
 </div>
 
 

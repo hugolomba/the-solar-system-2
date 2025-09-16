@@ -4,6 +4,12 @@ An interactive project that displays information about celestial bodies in the s
 I rebuilt this project, which I originally started in 2022, to enhance my skills in React, TypeScript, and full-stack development. I focused on creating a custom API, improving the design, and adding interactive animations to make the project more complete.
 
 ---
+## ScreenShots
+![home](./src/assets/img/screenshot.png)
+![planet](./src/assets/img/screenshot2.png)
+
+
+---
 
 ## Features
 
